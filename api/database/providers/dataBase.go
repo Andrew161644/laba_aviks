@@ -1,4 +1,4 @@
-package database
+package providers
 
 import (
 	"database/sql"
@@ -8,20 +8,20 @@ import (
 	"time"
 )
 
-const (
-	HOST = "db"
-	PORT = 5432
-)
+//const (
+//	HOST = "db"
+//	PORT = 5432
+//)
 
 type Database struct {
 	Conn *sql.DB
 }
 
-func Initialize(username, password, database string) (Database, error) {
+func Initialize(host string, port int, username, password, database string) (Database, error) {
 
 	db := Database{}
 	dsn := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
-		HOST, PORT, username, password, database)
+		host, port, username, password, database)
 	conn, err := sql.Open("postgres", dsn)
 	if err != nil {
 		return db, err
@@ -37,10 +37,10 @@ func Initialize(username, password, database string) (Database, error) {
 	return db, nil
 }
 
-func Connect(username, password, database string) (*Database, error) {
+func Connect(host string, port int, username, password, database string) (*Database, error) {
 	var err error
 	for i := 0; i < 10; i++ {
-		var dbs, err = Initialize(username, password, database)
+		var dbs, err = Initialize(host, port, username, password, database)
 		if err == nil {
 			log.Println("Connected")
 			return &dbs, nil

@@ -1,14 +1,28 @@
 package main
 
 import (
-	"github.com/Andrew161644/avicks_laba/api/database"
+	"flag"
+	"github.com/Andrew161644/avicks_laba/api/database/providers"
+	. "github.com/Andrew161644/avicks_laba/api/handlers"
 	"log"
+	"net/http"
 )
 
+// для запуска открываем в терминале и вводим
+//go run main.go -host=localhost
 func main() {
-	var db, err = database.Connect("postgres", "postgres", "postgres")
+	var host = flag.String("host", "db", "HTTP listen address")
+	flag.Parse()
+	log.Println("Use host: " + *host)
+	var _, err = providers.Connect(*host, 5432, "postgres", "postgres", "postgres")
 	if err != nil {
 		log.Fatal(err)
 	}
-	db.Conn.Exec("INSERT INTO Users (name) values ($1)", "admin")
+
+	var (
+		listen = flag.String("listen", ":8080", "HTTP listen address")
+	)
+	flag.Parse()
+	http.HandleFunc("/page", HelloPageHandler)
+	http.ListenAndServe(*listen, nil)
 }
