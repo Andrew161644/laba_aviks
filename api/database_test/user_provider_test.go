@@ -20,13 +20,7 @@ func TestAddUser(t *testing.T) {
 
 func TestCanGetUser(t *testing.T) {
 	var db, err = providers.Connect(host, 5432, "postgres", "postgres", "postgres")
-
-	id, err := db.AddUser(models.User{RoleId: 1, Name: "Andrew"})
-	if err != nil {
-		t.Fatal(err.Error())
-	}
-
-	_, err = db.GetUserById(id)
+	_, err = db.GetUserById(1)
 	if err != nil {
 		t.Fatal(err.Error())
 	}
@@ -34,13 +28,7 @@ func TestCanGetUser(t *testing.T) {
 
 func TestCanUpdateUser(t *testing.T) {
 	var db, err = providers.Connect(host, 5432, "postgres", "postgres", "postgres")
-
-	id, err := db.AddUser(models.User{RoleId: 1, Name: "Andrew"})
-	if err != nil {
-		t.Fatal(err.Error())
-	}
-
-	_, err = db.UpdateUser(id, models.User{Name: "West", RoleId: 1})
+	_, err = db.UpdateUser(1, models.User{Name: "West", RoleId: 1})
 	if err != nil {
 		t.Fatal(err.Error())
 	}
@@ -48,13 +36,7 @@ func TestCanUpdateUser(t *testing.T) {
 
 func TestCanDeleteUser(t *testing.T) {
 	var db, err = providers.Connect(host, 5432, "postgres", "postgres", "postgres")
-
-	id, err := db.AddUser(models.User{RoleId: 1, Name: "Andrew"})
-	if err != nil {
-		t.Fatal(err.Error())
-	}
-
-	err = db.DeleteUsers(id)
+	err = db.DeleteUsers(1)
 	if err != nil {
 		t.Fatal(err.Error())
 	}

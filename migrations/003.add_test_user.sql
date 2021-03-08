@@ -1,0 +1,1 @@
+INSERT INTO Users (name, roleId) values ('TestUser', 1)
