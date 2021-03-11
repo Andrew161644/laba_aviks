@@ -25,7 +25,15 @@ func main() {
 		listen = flag.String("listen", ":8080", "HTTP listen address")
 	)
 	flag.Parse()
+
+	HandleExample(app)
+
+	err = http.ListenAndServe(*listen, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+func HandleExample(app Injection) {
 	http.Handle("/", http.FileServer(http.Dir("./static")))
 	http.HandleFunc("/page", app.HelloPageHandler)
-	http.ListenAndServe(*listen, nil)
 }

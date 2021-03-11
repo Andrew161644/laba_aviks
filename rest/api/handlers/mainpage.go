@@ -14,7 +14,7 @@ func (app *Injection) HelloPageHandler(w http.ResponseWriter, r *http.Request) {
 		Message:    "Developers",
 		Developers: getAdmins(app),
 	}
-	tmpl, _ := template.ParseFiles("../static/html/main.html")
+	tmpl, _ := template.ParseFiles("../static/main.html")
 	err := tmpl.Execute(w, data)
 	if err != nil {
 		fmt.Fprintf(w, "Error")
