@@ -24,8 +24,8 @@ func main() {
 	var (
 		listen = flag.String("listen", ":8080", "HTTP listen address")
 	)
-	log.Println("/page")
 	flag.Parse()
+	http.Handle("/", http.FileServer(http.Dir("./static")))
 	http.HandleFunc("/page", app.HelloPageHandler)
 	http.ListenAndServe(*listen, nil)
 }
