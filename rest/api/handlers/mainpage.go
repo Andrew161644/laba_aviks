@@ -10,9 +10,7 @@ import (
 
 func (app *Injection) HelloPageHandler(w http.ResponseWriter, r *http.Request) {
 	data := views.ViewData{
-		Title:      "Go html",
-		Message:    "Developers",
-		Developers: getAdmins(app),
+		Title: "Проект",
 	}
 	tmpl, _ := template.ParseFiles("../static/main.html")
 	err := tmpl.Execute(w, data)
