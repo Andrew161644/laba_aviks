@@ -1,1 +1,1 @@
-INSERT INTO Users (name, roleId) values ('TestUser', 1)
+INSERT INTO Users (name, roleId) values ('TestUser', 2)

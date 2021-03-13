@@ -1,0 +1,1 @@
+docker build . -t andrewfromgilead/dependency_go_image
