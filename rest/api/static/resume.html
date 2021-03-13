@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-
         <meta charset="UTF-8">
         <title>{{ .Title}}</title>
         <link rel="stylesheet" href="css/zerogrid.css">
@@ -13,7 +12,7 @@
             <!--------------Header--------------->
             <header>
                 <div class="wrap-header zerogrid">
-                    <div id="logo"><img src="./images/logo.png"/></div>
+                    <div id="logo"><a href="https://www.zerotheme.com"><img src="./images/logo.png"/></a></div>
                     <nav>
                         <div class="wrap-nav">
                             <div class="menu">
@@ -39,26 +38,28 @@
                                 <div class="col-full">
                                     <div class="wrap-col">
                                         <article>
-                                            <div class="heading"><h2 class="title"><a href="#">Название Проекта</a></h2></div>
-                                            <img src="images/img1.jpg"/>
-                                            <div class="content">
-                                                <p> Следует отметить, что курс на социально-ориентированный национальный проект
-                                                    требует от нас анализа соответствующих условий активизации. Не вызывает
-                                                    сомнений, что повышение уровня гражданского сознания способствует подготовке
-                                                    и реализации модели развития. С другой стороны высокотехнологичная концепция
-                                                    общественной системы обеспечивает актуальность новых принципов формирования
-                                                    материально-технической и кадровой базы. Не следует, однако, забывать, что
-                                                    консультация с широким активом требует определения и уточнения поэтапного и
-                                                    последовательного развития общества. С другой стороны дальнейшее развитие
-                                                    различных форм деятельности позволяет выполнять важные задания по разработке
-                                                    поставленных обществом и правительством задач. .
-                                                </p>
+                                            <div class="heading"><h1 class="title"><a href="#">Отправьте своё резюме</a></h1></div>
+                                            <div id="comment">
+                                                <h3>Ваши данные</h3>
+
+                                                <form id="contact-form" method="post">
+                                                    <fieldset>
+                                                        <label><input name="name" value="ФИО" onBlur="if(this.value=='') this.value='ФИО'" onFocus="if(this.value =='ФИО' ) this.value=''"/></label>
+                                                        <label><input name="email" value="Email" onBlur="if(this.value=='') this.value='Email'" onFocus="if(this.value =='Email' ) this.value=''"/></label>
+                                                        <label><input name="speciality" value="Специальность" onBlur="if(this.value=='') this.value='Специальность'" onFocus="if(this.value =='Специальность' ) this.value=''"/></label>
+                                                        <textarea onBlur="if(this.value=='') this.value='Подробнее о себе'" onFocus="if(this.value =='Подробнее о себе' ) this.value=''">Подробнее о себе</textarea>
+                                                        <div class="buttons">
+                                                            <a href="#" onClick="document.getElementById('contact-form').reset()">Clear</a>
+                                                            <a href="#" onClick="document.getElementById('contact-form').submit()">Send</a>
+                                                        </div>
+                                                    </fieldset>
+                                                </form>
                                             </div>
+
                                         </article>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <div id="sidebar" class="col-1-3">
                             <div class="wrap-col">
@@ -120,6 +121,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="copyright">
+                    <p>2021</p>
                 </div>
             </footer>
 

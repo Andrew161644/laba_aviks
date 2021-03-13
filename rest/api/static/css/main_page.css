@@ -41,7 +41,7 @@ h1 a, h2 a, h3 a, h4 a{color: #474747; text-decoration: none;}
 h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover{color: #2ECC71; text-decoration: none;}
 
 /* ------------------Header-------------------- */
-header {background: #876611; margin-bottom:30px;}
+header {background: #333333; margin-bottom:30px;}
 header .wrap-header{height: 80px;}
 
 header #logo {float: left; margin: 10px;}
@@ -142,3 +142,49 @@ footer .box .content .gallery img{}
 
 .copyright{text-align:center; margin-top:20px; background:#000; padding:10px 0px;color:#ffffff; }
 .copyright a{text-decoration:underline; color:#ffffff; }
+
+.social-icons-1 {
+	padding: 0;
+	list-style: none;
+	margin: 10px;
+}
+.social-icons-1 li {
+	display: inline-block;
+	position: relative;
+	font-size: 24px;
+}
+.social-icons-1 i,
+.social-icons-1 img {
+	color: #fff;
+	position: absolute;
+	top: 18px;
+	left: 18px;
+	width: 24px;
+	height: 24px;
+	text-align:center;
+	transition: all 0.3s ease-out;
+}
+.social-icons-1 a {
+	display: inline-block;
+}
+.social-icons-1 a:before {
+	transform: scale(1);
+	content: "";
+	width: 60px;
+	height: 60px;
+	border-radius: 100%;
+	display: block;
+	background: linear-gradient(45deg, #2ECC71, rgba(49, 107, 97, 0.8));
+	box-shadow: 0 2px 5px rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.2);
+	transition: all 0.3s ease-out;
+}
+.social-icons-1 a:hover:before {
+	transform: scale(0);
+	transition: all 0.3s ease-in;
+}
+.social-icons-1 a:hover i,
+.social-icons-1 a:hover img {
+	transform: scale(1.8);
+	color: #2ECC71;
+	transition: all 0.3s ease-in;
+}
