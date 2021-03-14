@@ -42,7 +42,7 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover{color: #2ECC71; text-decoration: 
 
 /* ------------------Header-------------------- */
 header {background: #333333; margin-bottom:30px;}
-header .wrap-header{height: 80px;}
+header .wrap-header{height: 78px;}
 
 header #logo {float: left; margin: 10px;}
 
@@ -51,9 +51,9 @@ nav {}
 nav .wrap-nav{float: right;}
 
 .menu ul {list-style: none;margin: 0;padding: 0;}
-.menu  ul li {position: relative;float: left;padding: 28px 15px 21px 15px; background:#2ECC71;}
+.menu  ul li {position: relative;float: left;padding: 28px 10px 21px 15px; background:#2ECC71;}
 .menu  ul li:hover {background-color:#ffffff;}
-.menu  ul li a {font-size: 12px; line-height:14px;color: #ffffff;display: block;padding: 6px 10px;margin-bottom: 5px;z-index: 6;position: relative;font-weight:bold; text-transform:uppercase;}
+.menu  ul li a {font-size: 12px; line-height:12px;color: #ffffff;display: block;padding: 6px 10px;margin-bottom: 5px;z-index: 6;position: relative;font-weight:bold; text-transform:uppercase;}
 .menu  ul li:hover a {color:#000000;}
 
 
