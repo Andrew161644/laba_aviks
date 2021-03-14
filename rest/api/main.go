@@ -4,6 +4,7 @@ import (
 	"flag"
 	"github.com/Andrew161644/avicks_laba/api/database/providers"
 	. "github.com/Andrew161644/avicks_laba/api/handlers"
+	. "github.com/Andrew161644/avicks_laba/api/routes"
 	"log"
 	"net/http"
 )
@@ -25,15 +26,12 @@ func main() {
 		listen = flag.String("listen", ":8080", "HTTP listen address")
 	)
 	flag.Parse()
+	http.Handle("/", http.FileServer(http.Dir("./static")))
 
-	HandleExample(app)
+	AddRoutes(app) // добавляет пути
 
 	err = http.ListenAndServe(*listen, nil)
 	if err != nil {
 		log.Fatal(err)
 	}
-}
-func HandleExample(app Injection) {
-	http.Handle("/", http.FileServer(http.Dir("./static")))
-	http.HandleFunc("/page", app.HelloPageHandler)
 }
