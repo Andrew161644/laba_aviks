@@ -9,4 +9,6 @@ func AddRoutes(app handlers.Injection) {
 	http.HandleFunc("/developers", app.DevelopersHandler)
 	http.HandleFunc("/news", app.NewsHandler)
 	http.HandleFunc("/find_dev", app.FindDevHandler)
+	http.HandleFunc("/login", app.LoginDevHandler)
+	http.HandleFunc("/registration", app.RegDevHandler)
 }
