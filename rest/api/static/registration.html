@@ -49,13 +49,13 @@
                                     <article>
                                         <div class="heading2"><h1 class="title">Регистрация</h1></div>
                                         <div id="comment">
-                                            <form id="contact-form2" method="post">
-                                                <fieldset>
+                                            <form id="contact-form2" method="POST" action="/registration">
+                                            <fieldset>
                                                     <label><input name="name" value="Имя пользователя" onBlur="if(this.value=='') this.value='Имя пользователя'" onFocus="if(this.value =='Имя пользователя' ) this.value=''"/></label>
                                                     <label><input name="email" value="Почта" onBlur="if(this.value=='') this.value='Почта'" onFocus="if(this.value =='Почта' ) this.value=''"/></label>
                                                     <label><input name="password" value="Пароль" onBlur="if(this.value=='') this.value='Пароль'" onFocus="if(this.value =='Пароль' ) this.value=''"/></label>
                                                     <div class="buttons">
-                                                        <a href="#">Зарегистрироваться</a>
+                                                        <a><input type="submit" value="Зарегистрироваться"/></a>
                                                     </div>
                                                 </fieldset>
                                             </form>

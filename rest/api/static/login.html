@@ -49,12 +49,12 @@
                                     <article>
                                         <div class="heading2"><h1 class="title">Войти</h1></div>
                                         <div id="comment">
-                                            <form id="contact-form2" method="post">
+                                            <form id="contact-form2" method="post" action="/login">
                                                 <fieldset>
                                                     <label><input name="name" value="Имя пользователя" onBlur="if(this.value=='') this.value='Имя пользователя'" onFocus="if(this.value =='Имя пользователя' ) this.value=''"/></label>
                                                     <label><input name="password" value="Пароль" onBlur="if(this.value=='') this.value='Пароль'" onFocus="if(this.value =='Пароль' ) this.value=''"/></label>
                                                     <div class="buttons">
-                                                        <a href="#">Войти</a>
+                                                        <a><input type="submit" value="Войти"/></a>
                                                     </div>
                                                 </fieldset>
                                             </form>

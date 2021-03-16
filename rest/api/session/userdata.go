@@ -7,7 +7,7 @@ type UserData struct {
 	Password string
 }
 
-func GetUserData(user models.UserModel) UserData {
+func ToUserData(user models.UserModel) UserData {
 	return UserData{
 		Name: user.Name,
 	}

@@ -14,6 +14,7 @@ type IUserSession interface {
 	LogoutUser(w http.ResponseWriter, r *http.Request)
 	IsUserLogin(r *http.Request) bool
 	GetCurrentUserId(r *http.Request) (int, error)
+	CheckIfUserNameExist(data UserData, database *Database) (int, error)
 	CheckIfUserNamePasswordExist(data UserData, database *Database) (int, error)
 }
 
@@ -32,7 +33,7 @@ func CreateNewUserSession() UserSession {
 func (userSession *UserSession) LoginUser(w http.ResponseWriter, r *http.Request, dataBase *Database, data *UserData) {
 	session, _ := userSession.Store.Get(r, "cookie-name")
 
-	var id, err = userSession.CheckIfUserNamePasswordExist(*data, dataBase)
+	var id, err = userSession.CheckIfUserNameExist(*data, dataBase)
 
 	if err == nil {
 		session.Values["authenticated"] = true
@@ -67,11 +68,20 @@ func (userSession *UserSession) GetCurrentUserId(r *http.Request) (int, error) {
 	return 0, notRegister
 }
 
+func (userSession *UserSession) CheckIfUserNameExist(data UserData, database *Database) (int, error) {
+	var user, err = database.GetUserByName(data.Name)
+	if err == nil {
+		return user.ID, errors.New("User Exist")
+	} else {
+		return -1, nil
+	}
+}
+
 func (userSession *UserSession) CheckIfUserNamePasswordExist(data UserData, database *Database) (int, error) {
 	var user, err = database.GetUserByNameAndPassword(data.Name, data.Password)
-	if err != nil {
-		return 0, err
+	if err == nil {
+		return user.ID, errors.New("User Exist")
 	} else {
-		return user.ID, nil
+		return -1, nil
 	}
 }

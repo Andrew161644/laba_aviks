@@ -3,8 +3,9 @@ package main
 import (
 	"flag"
 	"github.com/Andrew161644/avicks_laba/api/database/providers"
-	. "github.com/Andrew161644/avicks_laba/api/handlers"
+	"github.com/Andrew161644/avicks_laba/api/handlers"
 	. "github.com/Andrew161644/avicks_laba/api/routes"
+	"github.com/Andrew161644/avicks_laba/api/session"
 	"log"
 	"net/http"
 )
@@ -19,14 +20,17 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	var app = Injection{
+	var app = handlers.Injection{
 		DataBase: db,
 	}
 	var (
 		listen = flag.String("listen", ":8080", "HTTP listen address")
 	)
 	flag.Parse()
+
 	http.Handle("/", http.FileServer(http.Dir("./static")))
+	var session = session.CreateNewUserSession()
+	app.UserSession = &session
 
 	AddRoutes(app) // добавляет пути
 

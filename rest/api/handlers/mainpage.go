@@ -65,39 +65,3 @@ func (app *Injection) FindDevHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Error")
 	}
 }
-
-func (app *Injection) LoginDevHandler(w http.ResponseWriter, r *http.Request) {
-	data := views.ViewData{
-		Title: "Войти",
-	}
-	tmpl, _ := template.ParseFiles("../static/login.html")
-	err := tmpl.Execute(w, data)
-	if err != nil {
-		fmt.Println(err)
-		fmt.Fprintf(w, "Error")
-	}
-}
-
-func (app *Injection) RegDevHandler(w http.ResponseWriter, r *http.Request) {
-	data := views.ViewData{
-		Title: "Регистрация",
-	}
-	tmpl, _ := template.ParseFiles("../static/registration.html")
-	err := tmpl.Execute(w, data)
-	if err != nil {
-		fmt.Println(err)
-		fmt.Fprintf(w, "Error")
-	}
-}
-
-//func getAdmins(app *Injection) []string {
-//	admins, err := app.DataBase.GetUserByRole(1)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//	var res []string
-//	for _, user := range admins.Users {
-//		res = append(res, user.Name)
-//	}
-//	return res
-//}
