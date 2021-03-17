@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/zerogrid.css">
     <link rel="stylesheet" href="css/main_page.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <script src="https://use.fontawesome.com/d74f62e351.js"></script>
 </head>
 <body>
 <div class="wrap-body">
@@ -14,13 +15,13 @@
     <header>
         <div class="wrap-header zerogrid">
             <div id="logo"><img src="./images/logo.png"/></div>
-
-            <div id="menudop"><ul>
-                    <li><a href="/registration">Регистрация</a></li>
-                    <li><a href="/login">Вход</a></li>
+            <div id="exit"><a>Выйти</a> </div>
+            <div id="nick">Гость</div>
+            <div id="login">
+                <ul class="social-icons-1">
+                    <li><a href="/login"><i class="fa fa-user"></i></a></li>
                 </ul>
             </div>
-
             <nav>
                 <div class="wrap-nav">
                     <div class="menu">
@@ -53,11 +54,13 @@
                                             <fieldset>
                                                     <label><input name="name" value="Имя пользователя" onBlur="if(this.value=='') this.value='Имя пользователя'" onFocus="if(this.value =='Имя пользователя' ) this.value=''"/></label>
                                                     <label><input name="email" value="Почта" onBlur="if(this.value=='') this.value='Почта'" onFocus="if(this.value =='Почта' ) this.value=''"/></label>
-                                                    <label><input name="password" value="Пароль" onBlur="if(this.value=='') this.value='Пароль'" onFocus="if(this.value =='Пароль' ) this.value=''"/></label>
-                                                    <div class="buttons">
-                                                        <a><input type="submit" value="Зарегистрироваться"/></a>
-                                                    </div>
+                                                    <label><input type="password" name="password" value="Пароль" onBlur="if(this.value=='') this.value='Пароль'" onFocus="if(this.value =='Пароль' ) this.value=''"/></label>
                                                 </fieldset>
+                                                <div class="buttons2">
+                                                    <ul>
+                                                        <li><a><input type="submit" value="Зарегистрироваться"/></a></li>
+                                                    </ul>
+                                                </div>
                                             </form>
                                         </div>
                                     </article>

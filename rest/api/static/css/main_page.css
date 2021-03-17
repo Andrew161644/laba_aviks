@@ -46,6 +46,17 @@ header .wrap-header{height: 78px;}
 
 header #logo {float: left; margin: 10px;}
 
+header #login{float: right; margin-bottom: 20px;}
+
+header #nick{float: right; margin-top:30px; color:#2ECC71;}
+header #nick a{float: right; margin-top:15px; color:#2ECC71;}
+header #nick a hover{float: right; margin-top:15px; color:#000000;}
+
+header #exit{float: right; margin-top:15px;margin-left: 5px; color:#2ECC71; }
+header #exit:hover{float: right; margin-top:15px;margin-left: 5px; color:#c92525;}
+header #exit a{float: right; margin-top:15px;margin-left: 5px; color:#2ECC71;}
+header #exit:hover a{float: right; margin-top:15px;margin-left: 5px; color:#c92525;}
+
 
 header #menudop ul {list-style: none;margin: 0;padding: 0;}
 header #menudop ul li  {position: relative;float: right;padding: 28px 5px 21px 5px; background:#0b7236;}
@@ -182,7 +193,12 @@ nav .wrap-nav{float: right;}
 }
 .buttons {padding-top:17px; text-align:right}
 .buttons a {margin-left:30px}
+.buttons a hover{color:#2ECC71;}
 
+.buttons2 {width:232px;}
+.buttons2 li {width:232px;margin-bottom: 5px;margin-top: 5px;}
+
+.buttons3 {text-align: center;margin-top: 20px;margin-left: 45px;}
 
 /* ------------------Footer-------------------- */
 footer {background-color:#333333; margin-top:30px;}
