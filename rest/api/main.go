@@ -4,7 +4,6 @@ import (
 	"flag"
 	"github.com/Andrew161644/avicks_laba/api/database/providers"
 	"github.com/Andrew161644/avicks_laba/api/handlers"
-	. "github.com/Andrew161644/avicks_laba/api/routes"
 	"github.com/Andrew161644/avicks_laba/api/session"
 	"log"
 	"net/http"
@@ -27,8 +26,7 @@ func main() {
 		listen = flag.String("listen", ":8080", "HTTP listen address")
 	)
 	flag.Parse()
-
-	http.Handle("/", http.FileServer(http.Dir("./static")))
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("resources/static"))))
 	var session = session.CreateNewUserSession()
 	app.UserSession = &session
 

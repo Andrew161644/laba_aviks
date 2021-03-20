@@ -39,7 +39,7 @@ func Initialize(host string, port int, username, password, database string) (Dat
 
 func Connect(host string, port int, username, password, database string) (*Database, error) {
 	var err error
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 100; i++ {
 		var dbs, err = Initialize(host, port, username, password, database)
 		if err == nil {
 			log.Println("Connected")

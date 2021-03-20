@@ -3,7 +3,6 @@ package handlers
 import (
 	"fmt"
 	"github.com/Andrew161644/avicks_laba/api/database/models"
-	"github.com/Andrew161644/avicks_laba/api/handlers/views"
 	. "github.com/Andrew161644/avicks_laba/api/session"
 	"html/template"
 	"net/http"
@@ -12,11 +11,8 @@ import (
 func (app *Injection) RegistartionHandlerHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
-		data := views.ViewData{
-			Title: "Регистрация",
-		}
-		tmpl, _ := template.ParseFiles("../static/registration.html")
-		err := tmpl.Execute(w, data)
+		tmpl, _ := template.ParseFiles("../resources/html/registration.html")
+		err := tmpl.Execute(w, app.AppCreateViewData("Регистрация", r))
 		if err != nil {
 			fmt.Println(err)
 			fmt.Fprintf(w, "Error")
@@ -27,34 +23,24 @@ func (app *Injection) RegistartionHandlerHandler(w http.ResponseWriter, r *http.
 			fmt.Fprintf(w, "ParseForm() err: %v", err)
 			return
 		}
+		var userData = UserData{
+			Name:     r.FormValue("name"),
+			Password: r.FormValue("password"),
+		}
 
-		name := r.FormValue("name")
-		password := r.FormValue("password")
+		var _, isExist = app.UserSession.CheckIfUserNameExist(userData, app.DataBase)
 
-		var _, err = app.UserSession.CheckIfUserNameExist(UserData{Name: name, Password: password}, app.DataBase)
-
-		if err == nil {
+		if isExist == false && IsValid(userData) {
 			app.DataBase.AddUser(models.UserModel{
-				Name:     name,
-				Password: password,
+				Name:     userData.Name,
+				Password: userData.Password,
 			})
-			app.UserSession.LoginUser(w, r, app.DataBase, &UserData{Name: name, Password: password})
+			app.UserSession.LoginUser(w, r, app.DataBase, &userData)
+			app.HelloPageHandler(w, r)
 
-			data := views.ViewData{
-				Title: "Главная",
-			}
-			tmpl, _ := template.ParseFiles("../static/main.html")
-			err := tmpl.Execute(w, data)
-			if err != nil {
-				fmt.Println(err)
-				fmt.Fprintf(w, "Error")
-			}
 		} else {
-			data := views.ViewData{
-				Title: "Регистрация",
-			}
-			tmpl, _ := template.ParseFiles("../static/registration.html")
-			err := tmpl.Execute(w, data)
+			tmpl, _ := template.ParseFiles("../resources/html/registration.html")
+			err := tmpl.Execute(w, app.AppCreateViewData("Регистрация", r))
 			if err != nil {
 				fmt.Println(err)
 				fmt.Fprintf(w, "Error")

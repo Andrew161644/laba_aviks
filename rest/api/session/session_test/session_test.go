@@ -17,17 +17,17 @@ var userSession = session.UserSession{
 var db, err = providers.Connect(host, 5432, "postgres", "postgres", "postgres")
 
 func TestCanCheckUserByNameExist(t *testing.T) {
-	id, err := userSession.CheckIfUserNameExist(session.UserData{Name: "Fidan"}, db)
-	if err == nil {
+	id, isExist := userSession.CheckIfUserNameExist(session.UserData{Name: "Fidan"}, db)
+	if isExist == false {
 		log.Fatal("User not exist")
 	}
 	log.Println(id)
 }
 
 func TestCanCheckUserByNamePasswordExist(t *testing.T) {
-	id, err := userSession.CheckIfUserNamePasswordExist(session.UserData{Name: "Fidan", Password: "admin"}, db)
-	if err == nil {
+	user, isExist := userSession.CheckIfUserNamePasswordExist(session.UserData{Name: "Fidan", Password: "admin"}, db)
+	if isExist == false {
 		log.Fatal("User not exist")
 	}
-	log.Println(id)
+	log.Println(user)
 }

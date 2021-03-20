@@ -1,5 +1,6 @@
 package views
 
 type ViewData struct {
-	Title string
+	Title    string
+	UserName string
 }
