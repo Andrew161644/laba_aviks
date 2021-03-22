@@ -3,25 +3,34 @@
     <head>
         <meta charset="utf-8">
         <title>{{ .Title}}</title>
-        <link rel="stylesheet" href="css/zerogrid.css">
-        <link rel="stylesheet" href="css/main_page.css">
-        <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" href="../static/css/zerogrid.css">
+        <link rel="stylesheet" href="../static/css/main_page.css">
+        <link rel="stylesheet" href="../static/css/responsive.css">
+        <script src="https://use.fontawesome.com/d74f62e351.js"></script>
     </head>
     <body>
         <div class="wrap-body">
             <!--------------Header--------------->
+            <!--------------Header--------------->
             <header>
                 <div class="wrap-header zerogrid">
-                    <div id="logo"><img src="./images/logo.png"/></div>
+                    <div id="logo"><img src="../static/images/logo.png"/></div>
+                    <div id="exit"><a href="/logout">Выйти</a> </div>
+                    <div id="nick">{{ .UserName}}</div>
+                    <div id="login">
+                        <ul class="social-icons-1">
+                            <li><a href="/login"><i class="fa fa-user"></i></a></li>
+                        </ul>
+                    </div>
                     <nav>
                         <div class="wrap-nav">
                             <div class="menu">
                                 <ul>
                                     <li><a href="/main_page">Главная</a></li>
-                                    <li><a href="/about">О проекте</a></li>
-                                    <li><a href="/developers">Участники</a></li>
+                                    <li><a href="/about">Проект</a></li>
+                                    <li><a href="/developers">Разработчики</a></li>
                                     <li><a href="/news">Новости</a></li>
-                                    <li><a href="/find_dev">Поиск специалистов</a></li>
+                                    <li><a href="/find_dev">Резюме</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -39,7 +48,7 @@
                                     <div class="wrap-col">
                                         <article>
                                             <div class="heading"><h2 class="title"><a href="#">Новости</a></h2></div>
-                                            <img src="images/news_img.jpg"/>
+                                            <img src="../static/images/news_img.jpg"/>
 
                                             <div class="heading"><h4 class="title">Выполненные этапы проекта</h4>
                                                 <div class="heading"><h5>Создание сайта рабочей группы</h5></div>

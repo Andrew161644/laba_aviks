@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ .Title}}</title>
+    <link rel="stylesheet" href="../static/css/zerogrid.css">
+    <link rel="stylesheet" href="../static/css/main_page.css">
+    <link rel="stylesheet" href="../static/css/responsive.css">
+    <script src="https://use.fontawesome.com/d74f62e351.js"></script>
+</head>
+<body>
+<div class="wrap-body">
+    <!--------------Header--------------->
+    <!--------------Header--------------->
+    <header>
+        <div class="wrap-header zerogrid">
+            <div id="logo"><img src="../static/images/logo.png"/></div>
+            <div id="exit"><a href="/logout">Выйти</a> </div>
+            <div id="nick">{{ .UserName}}</div>
+            <div id="login">
+                <ul class="social-icons-1">
+                    <li><a href="/login"><i class="fa fa-user"></i></a></li>
+                </ul>
+            </div>
+            <nav>
+                <div class="wrap-nav">
+                    <div class="menu">
+                        <ul>
+                            <li><a href="/main_page">Главная</a></li>
+                            <li><a href="/about">Проект</a></li>
+                            <li><a href="/developers">Разработчики</a></li>
+                            <li><a href="/news">Новости</a></li>
+                            <li><a href="/find_dev">Резюме</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!--------------Content--------------->
+     <div class="centr">
+         <section id="content">
+            <div class="wrap-content zerogrid">
+                <div class="row block">
+                    <div id="main-content" class="col-3-3">
+                        <div class="row">
+                            <div class="col-2-6">
+                                <div class="wrap-col">
+                                    <article>
+                                        <div class="heading2"><h1 class="title">Войти</h1> </div>
+                                        <div id="comment">
+                                            <form id="contact-form2" method="post" action="/login">
+                                                <fieldset>
+                                                    <label><input name="name" onclick="isLogin()" value="Имя пользователя" onBlur="if(this.value=='') this.value='Имя пользователя'" onFocus="if(this.value =='Имя пользователя' ) this.value=''"/></label>
+                                                    <label><input type="password" name="password" value="Пароль" onBlur="if(this.value=='') this.value='Пароль'" onFocus="if(this.value =='Пароль' ) this.value=''"/></label>
+                                                </fieldset>
+                                                <div class="buttons2">
+                                                    <ul>
+                                                        <li><a><input type="submit" value="Войти"/></a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="buttons3"><a href="/registration">Регистрация</a></div>
+                                            </form>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </section>
+     </div>
+</div>
+</body>
+</html>
