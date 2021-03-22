@@ -6,6 +6,8 @@ import (
 	"github.com/Andrew161644/avicks_laba/api/database/models"
 )
 
+// Провайдер для сущности - пользователь
+
 var ErrNoMatch = fmt.Errorf("no matching record")
 
 func (db Database) AddUser(user models.UserModel) (int, error) {

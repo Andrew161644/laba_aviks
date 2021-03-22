@@ -11,8 +11,6 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o build/avicks_laba
 FROM alpine:3.9
 RUN apk add ca-certificates
 COPY --from=build_base /go/github.com/Andrew161644/avicks_laba/api/build/avicks_laba /app/go-sample-app
-#COPY api/resources/static /static
-#COPY api/resources/html /html
 COPY api/resources /resources
 
 EXPOSE 8080

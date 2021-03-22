@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-// Handlers
+// Вернуть главную страницу
 func (app *Injection) HelloPageHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl, _ := template.ParseFiles("../resources/html/main.html")
 	err := tmpl.Execute(w, app.AppCreateViewData("Главная", r))
@@ -17,6 +17,7 @@ func (app *Injection) HelloPageHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// Вернуть страницу О нас
 func (app *Injection) AboutHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl, _ := template.ParseFiles("../resources/html/about.html")
 	err := tmpl.Execute(w, app.AppCreateViewData("О нас", r))
@@ -26,6 +27,7 @@ func (app *Injection) AboutHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// Вернуть страницу Разработчики
 func (app *Injection) DevelopersHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl, _ := template.ParseFiles("../resources/html/members.html")
 	err := tmpl.Execute(w, app.AppCreateViewData("Разработчики", r))
@@ -35,6 +37,7 @@ func (app *Injection) DevelopersHandler(w http.ResponseWriter, r *http.Request) 
 	}
 }
 
+// Вернуть страницу новости
 func (app *Injection) NewsHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl, _ := template.ParseFiles("../resources/html/news.html")
 	err := tmpl.Execute(w, app.AppCreateViewData("Новости", r))
@@ -44,6 +47,7 @@ func (app *Injection) NewsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// Вернуть страницу поиск разработчиков
 func (app *Injection) FindDevHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl, _ := template.ParseFiles("../resources/html/resume.html")
 	err := tmpl.Execute(w, app.AppCreateViewData("Резюме", r))
@@ -53,7 +57,9 @@ func (app *Injection) FindDevHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-//Secure Handlers
+//Secure Handlers - защищенные обработчики
+
+// Защита страницы разработчиков - усл. пользователь в сессии
 func (app *Injection) DevelopersSecureHandler(w http.ResponseWriter, r *http.Request) {
 	var isLogin = app.UserSession.IsUserLogin(r)
 	if !isLogin {

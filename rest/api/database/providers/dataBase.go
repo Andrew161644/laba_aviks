@@ -13,6 +13,7 @@ import (
 //	PORT = 5432
 //)
 
+// Структура база данных(хранит подключение)
 type Database struct {
 	Conn *sql.DB
 }
