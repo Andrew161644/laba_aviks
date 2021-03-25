@@ -52,9 +52,9 @@
                                         <div id="comment">
                                             <form id="contact-form2" method="POST" action="/registration">
                                             <fieldset>
-                                                    <label><input name="name" value="Имя пользователя" onBlur="if(this.value=='') this.value='Имя пользователя'" onFocus="if(this.value =='Имя пользователя' ) this.value=''"/></label>
+                                                    <label><input name="name" value="Имя пользователя" maxlength="6" onBlur="if(this.value=='') this.value='Имя пользователя'" onFocus="if(this.value =='Имя пользователя' ) this.value=''"/></label>
                                                     <label><input name="email" value="Почта" onBlur="if(this.value=='') this.value='Почта'" onFocus="if(this.value =='Почта' ) this.value=''"/></label>
-                                                    <label><input type="password" name="password" value="Пароль" onBlur="if(this.value=='') this.value='Пароль'" onFocus="if(this.value =='Пароль' ) this.value=''"/></label>
+                                                    <label><input type="password" name="password" value="*****" maxlength="5"onBlur="if(this.value=='') this.value='*****'" onFocus="if(this.value =='Пароль' ) this.value=''"/></label>
                                                 </fieldset>
                                                 <div class="buttons2">
                                                     <ul>
