@@ -11,6 +11,7 @@ import (
 
 // для запуска открываем в терминале и вводим
 //go run main.go -host=localhost
+// запускаем только в контейнере
 func main() {
 	var host = flag.String("host", "db", "HTTP listen address")
 	flag.Parse()

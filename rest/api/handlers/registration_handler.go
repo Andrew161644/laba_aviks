@@ -8,6 +8,7 @@ import (
 	"net/http"
 )
 
+// Обработчик регистрации
 func (app *Injection) RegistartionHandlerHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":

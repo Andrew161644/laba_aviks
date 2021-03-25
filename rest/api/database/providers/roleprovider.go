@@ -5,6 +5,8 @@ import (
 	"log"
 )
 
+// Провайдер для сущности - роль
+
 func (db Database) GetAllRoles() ([]models.Role, error) {
 	query := `SELECT * FROM Roles`
 	rows, err := db.Conn.Query(query)

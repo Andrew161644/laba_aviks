@@ -7,6 +7,7 @@ import (
 	"net/http"
 )
 
+// обработчик login
 func (app *Injection) LoginDevHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":

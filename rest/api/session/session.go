@@ -10,6 +10,7 @@ import (
 	"net/http"
 )
 
+// Интерфейс для работы с сессией
 type IUserSession interface {
 	LoginUser(w http.ResponseWriter, r *http.Request, dataBase *Database, data *UserData)
 	LogoutUser(w http.ResponseWriter, r *http.Request)
@@ -19,18 +20,22 @@ type IUserSession interface {
 	CheckIfUserNamePasswordExist(data UserData, database *Database) (models.UserModel, bool)
 }
 
+// Ошибка - не в сессии
 var notInSession = errors.New("not in session")
 
+// Структура сессия
 type UserSession struct {
 	Store *sessions.CookieStore
 }
 
+// Создание сессии
 func CreateNewUserSession() UserSession {
 	return UserSession{
 		Store: sessions.NewCookieStore(securecookie.GenerateRandomKey(32)),
 	}
 }
 
+// Добавление пользователя в сессию
 func (userSession *UserSession) LoginUser(w http.ResponseWriter, r *http.Request, dataBase *Database, data *UserData) {
 	session, _ := userSession.Store.Get(r, "cookie-name")
 
@@ -47,6 +52,7 @@ func (userSession *UserSession) LoginUser(w http.ResponseWriter, r *http.Request
 	session.Save(r, w)
 }
 
+// Удаление пользователя из сессии
 func (userSession *UserSession) LogoutUser(w http.ResponseWriter, r *http.Request) {
 	session, _ := userSession.Store.Get(r, "cookie-name")
 
@@ -57,6 +63,7 @@ func (userSession *UserSession) LogoutUser(w http.ResponseWriter, r *http.Reques
 	session.Save(r, w)
 }
 
+// Проверка находится ли пользователь в сессии
 func (userSession *UserSession) IsUserLogin(r *http.Request) bool {
 	session, _ := userSession.Store.Get(r, "cookie-name")
 	if auth, ok := session.Values["authenticated"].(bool); !ok || !auth {
@@ -66,6 +73,7 @@ func (userSession *UserSession) IsUserLogin(r *http.Request) bool {
 	return true
 }
 
+// Получение идентификатора и имени текущего пользователя в сессии
 func (userSession *UserSession) GetCurrentUserIdName(r *http.Request) (int, string, error) {
 	if userSession.IsUserLogin(r) {
 		session, _ := userSession.Store.Get(r, "cookie-name")
@@ -75,6 +83,7 @@ func (userSession *UserSession) GetCurrentUserIdName(r *http.Request) (int, stri
 	return 0, "", notInSession
 }
 
+// Проверка существует ли пользователь с именем
 func (userSession *UserSession) CheckIfUserNameExist(data UserData, database *Database) (models.UserModel, bool) {
 	var user, err = database.GetUserByName(data.Name)
 	if err == nil {
@@ -86,6 +95,7 @@ func (userSession *UserSession) CheckIfUserNameExist(data UserData, database *Da
 	}
 }
 
+// Проверка существует ли пользователь с таким именем и паролем
 func (userSession *UserSession) CheckIfUserNamePasswordExist(data UserData, database *Database) (models.UserModel, bool) {
 	var user, err = database.GetUserByNameAndPassword(data.Name, data.Password)
 	if err == nil {

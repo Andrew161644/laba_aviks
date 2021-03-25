@@ -5,6 +5,7 @@ import (
 	"net/http"
 )
 
+// пути для приложения(сопоставляем обработчикам)
 func AddRoutes(app Injection) {
 	http.HandleFunc("/main_page", app.HelloPageHandler)
 	http.HandleFunc("/about", app.AboutHandler)

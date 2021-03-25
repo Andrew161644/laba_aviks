@@ -8,16 +8,19 @@ import (
 	"net/http"
 )
 
+// структура для внедрения
 type Injection struct {
 	DataBase    *Database
 	UserSession *UserSession
 }
 
+// создание сессии
 func (app *Injection) CreateNewSession() {
 	var session = CreateNewUserSession()
 	app.UserSession = &session
 }
 
+// Создание модели(динамические поля) для страниц
 func (app Injection) AppCreateViewData(title string, r *http.Request) views.ViewData {
 	_, name, err := app.UserSession.GetCurrentUserIdName(r)
 	log.Println(name, err)
