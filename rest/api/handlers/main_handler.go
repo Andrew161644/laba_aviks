@@ -47,16 +47,6 @@ func (app *Injection) NewsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// Вернуть страницу поиск разработчиков
-func (app *Injection) FindDevHandler(w http.ResponseWriter, r *http.Request) {
-	tmpl, _ := template.ParseFiles("../resources/html/resume.html")
-	err := tmpl.Execute(w, app.AppCreateViewData("Резюме", r))
-	if err != nil {
-		fmt.Println(err)
-		fmt.Fprintf(w, "Error")
-	}
-}
-
 //Secure Handlers - защищенные обработчики
 
 // Защита страницы разработчиков - усл. пользователь в сессии

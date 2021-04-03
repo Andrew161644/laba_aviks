@@ -51,15 +51,15 @@
                                             <div id="comment">
                                                 <h3>Ваши данные</h3>
 
-                                                <form id="contact-form" method="post">
+                                                <form id="contact-form" method="post" action="/find_dev">
                                                     <fieldset>
                                                         <label><input name="name" value="ФИО" onBlur="if(this.value=='') this.value='ФИО'" onFocus="if(this.value =='ФИО' ) this.value=''"/></label>
                                                         <label><input name="email" value="Email" onBlur="if(this.value=='') this.value='Email'" onFocus="if(this.value =='Email' ) this.value=''"/></label>
                                                         <label><input name="speciality" value="Специальность" onBlur="if(this.value=='') this.value='Специальность'" onFocus="if(this.value =='Специальность' ) this.value=''"/></label>
-                                                        <textarea onBlur="if(this.value=='') this.value='Подробнее о себе'" onFocus="if(this.value =='Подробнее о себе' ) this.value=''">Подробнее о себе</textarea>
+                                                        <textarea name = "about" onBlur="if(this.value=='') this.value='Подробнее о себе'" onFocus="if(this.value =='Подробнее о себе' ) this.value=''">Подробнее о себе</textarea>
                                                         <div class="buttons">
                                                             <a href="#" onClick="document.getElementById('contact-form').reset()">Clear</a>
-                                                            <a href="#" >Send</a>
+                                                            <a><input type="submit" value="Send"/></a>
                                                         </div>
                                                     </fieldset>
                                                 </form>
