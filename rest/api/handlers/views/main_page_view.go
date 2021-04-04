@@ -1,7 +1,7 @@
 package views
 
+// Структура хранящая динамические поля для отображения в html
 type ViewData struct {
-	Title      string
-	Message    string
-	Developers []string
+	Title    string
+	UserName string
 }

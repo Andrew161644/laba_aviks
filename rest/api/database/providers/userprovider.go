@@ -6,12 +6,14 @@ import (
 	"github.com/Andrew161644/avicks_laba/api/database/models"
 )
 
+// Провайдер для сущности - пользователь
+
 var ErrNoMatch = fmt.Errorf("no matching record")
 
 func (db Database) AddUser(user models.UserModel) (int, error) {
 	var id int
-	query := `INSERT INTO Users (name, roleId) values ($1, $2) RETURNING id`
-	err := db.Conn.QueryRow(query, user.Name, user.RoleId).Scan(&id)
+	query := `INSERT INTO Users (name, password, roleId) values ($1, $2, $3) RETURNING id`
+	err := db.Conn.QueryRow(query, user.Name, user.Password, user.RoleId).Scan(&id)
 	if err != nil {
 		return 0, err
 	}
@@ -23,7 +25,7 @@ func (db Database) GetUserById(userId int) (models.UserModel, error) {
 	query := `SELECT * FROM users WHERE id = $1;`
 	row := db.Conn.QueryRow(query, userId)
 
-	switch err := row.Scan(&user.ID, &user.Name, &user.RoleId); err {
+	switch err := row.Scan(&user.ID, &user.Name, &user.Password, &user.RoleId); err {
 	case sql.ErrNoRows:
 		return user, ErrNoMatch
 	default:
@@ -55,10 +57,10 @@ func (db Database) UpdateUser(userId int, user models.UserModel) (models.UserMod
 	return user, nil
 }
 
-func (db Database) GetUserByRole(roleId int) (models.UserList, error) {
-	users := models.UserList{}
+func (db Database) GetUserByRole(roleId int) (models.List, error) {
+	users := models.List{}
 
-	rows, err := db.Conn.Query("SELECT * FROM users WHERE roleId = $1;", roleId)
+	rows, err := db.Conn.Query("SELECT id, name, roleId FROM users WHERE roleId = $1;", roleId)
 	if err != nil {
 		return users, err
 	}
@@ -71,4 +73,30 @@ func (db Database) GetUserByRole(roleId int) (models.UserList, error) {
 		users.Users = append(users.Users, user)
 	}
 	return users, nil
+}
+
+func (db Database) GetUserByNameAndPassword(name string, password string) (models.UserModel, error) {
+	user := models.UserModel{}
+	query := `SELECT * FROM users WHERE name = $1 and password = $2;`
+	row := db.Conn.QueryRow(query, name, password)
+
+	switch err := row.Scan(&user.ID, &user.Name, &user.Password, &user.RoleId); err {
+	case sql.ErrNoRows:
+		return user, ErrNoMatch
+	default:
+		return user, err
+	}
+}
+
+func (db Database) GetUserByName(name string) (models.UserModel, error) {
+	user := models.UserModel{}
+	query := `SELECT * FROM users WHERE name = $1`
+	row := db.Conn.QueryRow(query, name)
+
+	switch err := row.Scan(&user.ID, &user.Name, &user.Password, &user.RoleId); err {
+	case sql.ErrNoRows:
+		return user, ErrNoMatch
+	default:
+		return user, err
+	}
 }

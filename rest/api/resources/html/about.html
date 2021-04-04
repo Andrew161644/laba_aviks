@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{ .Title}}</title>
+    <link rel="stylesheet" href="../static/css/zerogrid.css">
+    <link rel="stylesheet" href="../static/css/main_page.css">
+    <link rel="stylesheet" href="../static/css/responsive.css">
+    <script src="https://use.fontawesome.com/d74f62e351.js"></script>
+</head>
+<body>
+<div class="wrap-body">
+    <!--------------Header--------------->
+    <!--------------Header--------------->
+    <header>
+        <div class="wrap-header zerogrid">
+            <div id="logo"><img src="../static/images/logo.png"/></div>
+            <div id="exit"><a href="/logout">Выйти</a> </div>
+            <div id="nick">{{ .UserName}}</div>
+            <div id="login">
+                <ul class="social-icons-1">
+                    <li><a href="/login"><i class="fa fa-user"></i></a></li>
+                </ul>
+            </div>
+            <nav>
+                <div class="wrap-nav">
+                    <div class="menu">
+                        <ul>
+                            <li><a href="/main_page">Главная</a></li>
+                            <li><a href="/about">Проект</a></li>
+                            <li><a href="/developers">Разработчики</a></li>
+                            <li><a href="/news">Новости</a></li>
+                            <li><a href="/find_dev">Резюме</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!--------------Content--------------->
+    <section id="content">
+        <div class="wrap-content zerogrid">
+            <div class="row block">
+                <div id="main-content" class="col-2-3">
+                    <div class="row">
+                        <div class="col-full">
+                            <div class="wrap-col">
+                                <article>
+                                    <div class="heading"><h2 class="title"><a href="#">Программное обеспечение для распознавания жестов в режиме реального времени</a></h2></div>
+                                    <img src="../static/images/progect_img.jpg"/>
+                                    <div class="content">
+                                        <p>Цель данного продукта – распознавание жестов, предназначенных для управления роботом. Например, команда «стоп», отображаемая жестом</p>
+                                        <img src="../static/images/stop.jpg"/>
+                                        <p>Задача заключается в том, чтобы по фото/видеопоследовательности на входе выделить и классифицировать показанный жест. Данная задача относится к области компьютерного зрения.</p>
+                                        <p>Практическая ценность программного обеспечения заключается в том, что, во-первых, можно распознавать жесты в режиме реального времени, а во-вторых, ПО может быть использовано в робототехнических системах для управления автоматическим устройством.</p>
+                                    </div>
+                                    <div class="extra"></div>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="sidebar" class="col-1-3">
+                    <div class="wrap-col">
+                        <div class="box">
+                            <div class="heading"><h4 class="title">Как с нами связаться</h4></div>
+                            <div class="content">
+                                <div class="connect">
+                                    <ul>
+                                        <li><a href="https://vk.com/s_printf">Ахмадуллин Аскар </a></li>
+                                        <li><a href="https://vk.com/andrew__west">Трубицин Андрей</a></li>
+                                        <li><a href="https://vk.com/h_f_r">Хафизов Фидан</a></li>
+                                        <li class="last"><a href="https://vk.com/vladirely">Якупова Влада</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="heading"><h4 class="title">Наши проекты</h4></div>
+                            <div class="content">
+                                <ul>
+                                    <li><a href=>Проект по ПиКПО</a></li>
+                                    <li><a href=>Проект по УПП</a></li>
+                                    <li class="last"><a href=>Проект по ERP системы 1С</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--------------Footer--------------->
+    <footer>
+        <div class="wrap-footer zerogrid">
+            <div class="row">
+                <div class="col-1-2">
+                    <div class="wrap-col">
+                        <div class="box">
+                            <div class="heading"><h4 class="title">О Нас</h4></div>
+                            <div class="content">
+                                <p>Наша рабочая группа состоит из 4 человек: Ахмадуллин Аскар, Трубицин Андрей, Хафизов Фидан и Якупова Влада..</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1-2">
+                    <div class="wrap-col">
+                        <div class="box">
+                            <div class="heading"><h4 class="title">Наши проекты</h4></div>
+                            <div class="content">
+                                <ul>
+                                    <li><a href=>Проект по ПиКПО</a></li>
+                                    <li><a href=>Проект по УПП</a></li>
+                                    <li class="last"><a href=>Проект по ERP системы 1С</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>2021</p>
+        </div>
+    </footer>
+
+</div>
+</body>
+</html>

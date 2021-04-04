@@ -1,0 +1,37 @@
+version: "3.9"
+services:
+  db:
+    volumes:
+      - ../../migrations/.:/docker-entrypoint-initdb.d/.
+      - data:/var/lib/postgresql/data
+    image: postgres:alpine
+    restart: always
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+  neiro_service:
+    depends_on:
+      - db
+    build:
+      context: ../../python_app/app
+      dockerfile: Dockerfile
+    networks:
+      - default
+    ports:
+      - "5000:5000"
+  rest_service:
+    depends_on:
+      - db
+      - neiro_service
+    build:
+      context: ../../rest
+      dockerfile: Dockerfile
+    networks:
+      - default
+    ports:
+      - "8080:8080"
+volumes:
+  data:

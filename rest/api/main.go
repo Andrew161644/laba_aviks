@@ -3,13 +3,15 @@ package main
 import (
 	"flag"
 	"github.com/Andrew161644/avicks_laba/api/database/providers"
-	. "github.com/Andrew161644/avicks_laba/api/handlers"
+	"github.com/Andrew161644/avicks_laba/api/handlers"
+	"github.com/Andrew161644/avicks_laba/api/session"
 	"log"
 	"net/http"
 )
 
 // для запуска открываем в терминале и вводим
 //go run main.go -host=localhost
+// запускаем только в контейнере
 func main() {
 	var host = flag.String("host", "db", "HTTP listen address")
 	flag.Parse()
@@ -18,22 +20,21 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	var app = Injection{
+	var app = handlers.Injection{
 		DataBase: db,
 	}
 	var (
 		listen = flag.String("listen", ":8080", "HTTP listen address")
 	)
 	flag.Parse()
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("resources/static"))))
+	var session = session.CreateNewUserSession()
+	app.UserSession = &session
 
-	HandleExample(app)
+	AddRoutes(app) // добавляет пути
 
 	err = http.ListenAndServe(*listen, nil)
 	if err != nil {
 		log.Fatal(err)
 	}
-}
-func HandleExample(app Injection) {
-	http.Handle("/", http.FileServer(http.Dir("./static")))
-	http.HandleFunc("/page", app.HelloPageHandler)
 }
