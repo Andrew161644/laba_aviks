@@ -1,7 +1,10 @@
 package models
 
 type Year struct {
-	Id          int    `json:"id"`
+	ID          int    `json:"id"`
 	Name        string `json:"name"`
 	Description string `json:"description"`
+}
+type YearList struct {
+	Years []Year `json:"years"`
 }
