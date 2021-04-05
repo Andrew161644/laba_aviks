@@ -1,6 +1,9 @@
 package providers
 
-import "github.com/Andrew161644/avicks_laba/api/database/models"
+import (
+	"database/sql"
+	"github.com/Andrew161644/avicks_laba/api/database/models"
+)
 
 func (db Database) AddBankAccount(account models.BankAccount) (int, error) {
 	var id int
@@ -28,4 +31,15 @@ func (db Database) GetAllBankAccountsByUserId(model models.UserModel) (models.Ba
 		bankAccs.BankAccounts = append(bankAccs.BankAccounts, bankAcc)
 	}
 	return bankAccs, err
+}
+
+func (db Database) DeleteBankAccount(account models.BankAccount) error {
+	query := `DELETE FROM bank_account WHERE id = $1;`
+	_, err := db.Conn.Exec(query, account.ID)
+	switch err {
+	case sql.ErrNoRows:
+		return ErrNoMatch
+	default:
+		return err
+	}
 }
