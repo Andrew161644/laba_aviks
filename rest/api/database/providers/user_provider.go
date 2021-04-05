@@ -57,8 +57,8 @@ func (db Database) UpdateUser(userId int, user models.UserModel) (models.UserMod
 	return user, nil
 }
 
-func (db Database) GetUserByRole(roleId int) (models.List, error) {
-	users := models.List{}
+func (db Database) GetUserByRole(roleId int) (models.UserList, error) {
+	users := models.UserList{}
 
 	rows, err := db.Conn.Query("SELECT id, name, roleId FROM users WHERE roleId = $1;", roleId)
 	if err != nil {

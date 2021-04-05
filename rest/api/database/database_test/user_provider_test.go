@@ -2,17 +2,11 @@ package database_test
 
 import (
 	"github.com/Andrew161644/avicks_laba/api/database/models"
-	"github.com/Andrew161644/avicks_laba/api/database/providers"
 	"log"
 	"testing"
 )
 
 // необходимо сначала поднять базу локально
-
-const host = "localhost"
-
-var db, err = providers.Connect(host, 5432, "postgres", "postgres", "postgres")
-
 func TestAddUser(t *testing.T) {
 	_, err = db.AddUser(models.UserModel{RoleId: 1, Name: "Andrew"})
 	if err != nil {
@@ -42,7 +36,7 @@ func TestCanGetUser(t *testing.T) {
 	}
 }
 
-func TestGetUserBuName(t *testing.T) {
+func TestGetUserByName(t *testing.T) {
 	user, err := db.GetUserByName("TestUser")
 	if err != nil {
 		t.Fatal(err.Error())
