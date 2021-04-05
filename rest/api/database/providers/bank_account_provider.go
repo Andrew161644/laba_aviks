@@ -4,8 +4,8 @@ import "github.com/Andrew161644/avicks_laba/api/database/models"
 
 func (db Database) AddBankAccount(account models.BankAccount) (int, error) {
 	var id int
-	query := `INSERT INTO bank_account (currencyid, userid) values ($1, $2) RETURNING id`
-	err := db.Conn.QueryRow(query, account.UserId, account.CurrencyId).Scan(&id)
+	query := `INSERT INTO bank_account (value, currencyid, userid) values ($1, $2, $3) RETURNING id`
+	err := db.Conn.QueryRow(query, account.Value, account.UserId, account.CurrencyId).Scan(&id)
 	if err != nil {
 		return 0, err
 	}
@@ -21,7 +21,7 @@ func (db Database) GetAllBankAccountsByUserId(model models.UserModel) (models.Ba
 	}
 	for rows.Next() {
 		var bankAcc = models.BankAccount{}
-		err := rows.Scan(&bankAcc.ID, &bankAcc.UserId, &bankAcc.CurrencyId)
+		err := rows.Scan(&bankAcc.ID, &bankAcc.Value, &bankAcc.UserId, &bankAcc.CurrencyId)
 		if err != nil {
 			return bankAccs, err
 		}
