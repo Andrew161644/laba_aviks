@@ -47,18 +47,6 @@ func (app *Injection) NewsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-//Secure Handlers - защищенные обработчики
-
-// Защита страницы разработчиков - усл. пользователь в сессии
-func (app *Injection) ResumeSecureHandler(w http.ResponseWriter, r *http.Request) {
-	var isLogin = app.UserSession.IsUserLogin(r)
-	if !isLogin {
-		w.WriteHeader(http.StatusForbidden)
-		return
-	}
-	app.ResumeHandler(w, r)
-}
-
 func (app *Injection) DevelopersSecureHandler(w http.ResponseWriter, r *http.Request) {
 	var isLogin = app.UserSession.IsUserLogin(r)
 	if !isLogin {

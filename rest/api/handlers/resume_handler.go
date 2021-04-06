@@ -47,3 +47,12 @@ func (app *Injection) ResumeHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 }
+
+func (app *Injection) ResumeSecureHandler(w http.ResponseWriter, r *http.Request) {
+	var isLogin = app.UserSession.IsUserLogin(r)
+	if !isLogin {
+		w.WriteHeader(http.StatusForbidden)
+		return
+	}
+	app.ResumeHandler(w, r)
+}
