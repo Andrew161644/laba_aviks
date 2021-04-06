@@ -10,7 +10,7 @@ import (
 func TestNeiro(t *testing.T) {
 	resp, err := http.Get("http://localhost:5000")
 	if err != nil {
-		// handle error
+		log.Fatal(err)
 	}
 	defer resp.Body.Close()
 	bodyBytes, err := ioutil.ReadAll(resp.Body)
