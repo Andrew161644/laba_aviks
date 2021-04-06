@@ -15,7 +15,7 @@ func (db Database) AddIndex(index models.Index) (int, error) {
 	return id, nil
 }
 
-func (db Database) DeleteIndex(index models.Index) error {
+func (db Database) DeleteIndexById(index models.Index) error {
 	query := `DELETE FROM indices WHERE id = $1;`
 	_, err := db.Conn.Exec(query, index.Id)
 	switch err {
@@ -35,7 +35,7 @@ func (db Database) GetAllIndices() ([]models.Index, error) {
 	}
 	for rows.Next() {
 		var index = models.Index{}
-		err := rows.Scan(&index.Id, &index.Value, &index.CurrentYear, &index.CurrencyId, &index.PastYear)
+		err := rows.Scan(&index.Id, &index.PastYear, &index.CurrentYear, &index.Value, &index.CurrencyId)
 		if err != nil {
 			return indices, err
 		}
@@ -44,7 +44,7 @@ func (db Database) GetAllIndices() ([]models.Index, error) {
 	return indices, err
 }
 
-func (db Database) GetAllIndicesByCurrentYaer(index models.Index) ([]models.Index, error) {
+func (db Database) GetAllIndicesByCurrentYear(index models.Index) ([]models.Index, error) {
 	var indices []models.Index
 	query := `SELECT * FROM indices WHERE currentyear = $1`
 	rows, err := db.Conn.Query(query, index.CurrentYear)
@@ -53,7 +53,7 @@ func (db Database) GetAllIndicesByCurrentYaer(index models.Index) ([]models.Inde
 	}
 	for rows.Next() {
 		var index = models.Index{}
-		err := rows.Scan(&index.Id, &index.Value, &index.CurrentYear, &index.CurrencyId, &index.PastYear)
+		err := rows.Scan(&index.Id, &index.PastYear, &index.CurrentYear, &index.Value, &index.CurrencyId)
 		if err != nil {
 			return indices, err
 		}
@@ -62,7 +62,7 @@ func (db Database) GetAllIndicesByCurrentYaer(index models.Index) ([]models.Inde
 	return indices, err
 }
 
-func (db Database) GetAllIndicesByCurrentYaerAndCurrency(index models.Index) ([]models.Index, error) {
+func (db Database) GetAllIndicesByCurrentYearAndCurrency(index models.Index) ([]models.Index, error) {
 	var indices []models.Index
 	query := `SELECT * FROM indices WHERE currentyear = $1 AND currencyid = $2`
 	rows, err := db.Conn.Query(query, index.CurrentYear, index.CurrencyId)
@@ -71,7 +71,7 @@ func (db Database) GetAllIndicesByCurrentYaerAndCurrency(index models.Index) ([]
 	}
 	for rows.Next() {
 		var index = models.Index{}
-		err := rows.Scan(&index.Id, &index.Value, &index.CurrentYear, &index.CurrencyId, &index.PastYear)
+		err := rows.Scan(&index.Id, &index.PastYear, &index.CurrentYear, &index.Value, &index.CurrencyId)
 		if err != nil {
 			return indices, err
 		}
