@@ -35,6 +35,7 @@ func (app *Injection) RegistartionHandlerHandler(w http.ResponseWriter, r *http.
 			app.DataBase.AddUser(models.UserModel{
 				Name:     userData.Name,
 				Password: userData.Password,
+				RoleId:   2,
 			})
 			app.UserSession.LoginUser(w, r, app.DataBase, &userData)
 			app.HelloPageHandler(w, r)
