@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FinStat</title>
+    <meta charset="utf-8"/>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styleCoeff.css') }}">
+</head>
+<body>
+<div class="wrapper">
+    <h2>Анализ финансового состояния предприятия</h2>
+    <div class="wrapper__inputs">
+        <div class="inputs">
+
+            <form action="/coefficient" method="post">
+                <p> Имя компании:</p>
+                <input type="text" name="name" value="" required>
+                <p>Заемный капитал:</p>
+                <input type="number" min="0" name="borrCap" value="" required>
+                <p>Собственный капитал:</p>
+                <input type="number" min="0" name="ownCap" value="" required>
+                <p>Валюта баланса:</p>
+                <input type="number" min="0" name="balanceCurr" value="" required>
+                <p>Денежные средства:</p>
+                <input type="number" min="0" name="allCash" value="" required>
+                <p>Долгосрочные обязательства:</p>
+                <input type="number" min="0" name="longTermDuties" value="" required>
+                <p>Кратксрочные обязательства:</p>
+                <input type="number" min="0" name="shortTermDuties" value="" required>
+                <p>Краткосрочные финансовые вложения:</p>
+                <input type="number" min="0" name="shortFinInv" value="" required>
+                <p>Краткосрочная дебиторская задолженности:</p>
+                <input type="number" min="0" name="shortRec" value="" required>
+                <p>Общая сумма ликвидных оборотных средств:</p>
+                <input type="number" min="0" name="sumMoney" value="" required>
+                <input type="submit" class="btn" nvalue="Отправить">
+            </form>
+        </div>
+    </div>
+    <div class="wrapper__values">
+
+        <p>{{kk}}</p>
+        <p>{{kn}}</p>
+        <p>{{kfin}}</p>
+        <p>{{kfu}}</p>
+        <p>{{kabsl}}</p>
+        <p>{{kfastl}}</p>
+        <p>{{kcurrl}}</p>
+
+    </div>
+    <h2>{{titleReport}}</h2>
+    <div class="wrapper__report">
+        <p>{{report}}</p>
+    </div>
+</div>
+</body>
+</html>
