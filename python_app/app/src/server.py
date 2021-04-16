@@ -4,13 +4,10 @@ import coeffFunctionsLib
 server = Flask(__name__)
 
 
-@server.route('/coefficient', methods=['POST', 'GET'])
+@server.route('/coefficient', methods=['POST'])
 def coefficient():
-    form = request.form
     if request.method=='POST':
         formData=request.form #json входные данные c формы
-        print(request.form['name'])
-        name = formData['name']
         borrCap = int(formData['borrCap'])  # Заемный капитал
         ownCap = int(formData['ownCap'])  # Собственный капитал
         balanceCurr = int(formData['balanceCurr'])  # Валюта баланса
@@ -29,10 +26,8 @@ def coefficient():
         kcurrl = round(coeffFunctionsLib.KCurrL(int(sumMoney), int(shortTermDuties)), 2)
         report = coeffFunctionsLib.KReport(kk, kn, kfin, kfu, kabsl, kfastl, kcurrl)
         data = {'kk': kk, 'kn': kn, 'kfin': kfin, 'kfu': kfu, 'kabsl': kabsl, 'kfastl': kfastl, 'kcurrl': kcurrl, 'report': report} #json выходные данные
+        #  #return render_template('coefficient.html', kk="Коэффициент капитализации: "+str(kk), kn="Коэффициент финансовой независимости: "+str(kn), kfin="Коэффициент финансирования: "+str(kfin), kfu="Коэффициент финанcовой устойчивости: "+str(kfu), kabsl="Коэффициент абсолютной ликвидности: "+str(kabsl), kfastl="Коэффициент быстрой ликвидности: "+str(kfastl), kcurrl="Коэффициент текущей (общей) ликвидности: "+str(kcurrl), titleReport="Отчет", report=report)
         return jsonify(data)
-        #return render_template('coefficient.html', kk="Коэффициент капитализации: "+str(kk), kn="Коэффициент финансовой независимости: "+str(kn), kfin="Коэффициент финансирования: "+str(kfin), kfu="Коэффициент финанcовой устойчивости: "+str(kfu), kabsl="Коэффициент абсолютной ликвидности: "+str(kabsl), kfastl="Коэффициент быстрой ликвидности: "+str(kfastl), kcurrl="Коэффициент текущей (общей) ликвидности: "+str(kcurrl), titleReport="Отчет", report=report)
-    else:
-        return render_template('coefficient.html', form=form)
 
 if __name__ == "__main__":
    server.run(host='0.0.0.0')
