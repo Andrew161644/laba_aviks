@@ -3,7 +3,6 @@ from flask import Flask, render_template, request, jsonify
 import coeffFunctionsLib
 server = Flask(__name__)
 
-
 @server.route('/coefficient', methods=['POST'])
 def coefficient():
     if request.method=='POST':

@@ -8,8 +8,10 @@ import (
 	. "github.com/Andrew161644/avicks_laba/api/clients/organization_status_client"
 )
 
+var uri = "http://localhost:5000/coefficient"
+
 func TestMakeRequestOrgStatus(t *testing.T) {
-	var err = CallGetOrgStatusInfo(OrgStatusRequestModel{
+	var res, err = CallGetOrgStatusInfo(uri, OrgStatusRequestModel{
 		Name:            "",
 		BorrCap:         1,
 		OwnCap:          1,
@@ -24,4 +26,5 @@ func TestMakeRequestOrgStatus(t *testing.T) {
 	if err != nil {
 		log.Fatal(err)
 	}
+	log.Println(res)
 }

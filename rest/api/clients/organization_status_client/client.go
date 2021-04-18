@@ -2,31 +2,29 @@ package organization_status_client
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 )
 
-var uri = "http://localhost:5000/coefficient"
+var CalcUri = "http://neiro_service:5000/coefficient"
 
-func CallGetOrgStatusInfo(rm OrgStatusRequestModel) error {
+func CallGetOrgStatusInfo(uri string, rm OrgStatusRequestModel) (*OrgStatusResponseModel, error) {
 	data := rm.AsUrlValues()
 	log.Println(data)
 	resp, err := http.PostForm(uri, data)
 
 	if err != nil {
 		log.Fatal(err)
-		return err
+		return nil, err
 	}
 
-	//as struct example
 	var res OrgStatusResponseModel
 
 	err = json.NewDecoder(resp.Body).Decode(&res)
 	if err != nil {
 		log.Fatal(err)
-		return err
+		return nil, err
 	}
-	fmt.Println(res)
-	return nil
+
+	return &res, nil
 }

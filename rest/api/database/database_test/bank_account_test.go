@@ -2,6 +2,7 @@ package database_test
 
 import (
 	"github.com/Andrew161644/avicks_laba/api/database/models"
+	"github.com/nu7hatch/gouuid"
 	"log"
 	"testing"
 )
@@ -20,7 +21,9 @@ func TestCanGetAccountsBuUserId(t *testing.T) {
 }
 
 func TestCanAddBankAccount(t *testing.T) {
+	var uuidVal, _ = uuid.NewV4()
 	var id, error = db.AddBankAccount(models.BankAccount{
+		ID:         uuidVal.String(),
 		Value:      8888,
 		CurrencyId: 1,
 		UserId:     1,
@@ -33,7 +36,7 @@ func TestCanAddBankAccount(t *testing.T) {
 
 func TestCanUpdateBankAccountById(t *testing.T) {
 	var acc, error = db.UpdateBankAccountById(models.BankAccount{
-		ID:         1,
+		ID:         "5fa81258-a019-11eb-bcbc-0242ac130002",
 		Value:      12,
 		CurrencyId: 2,
 		UserId:     2,
@@ -46,7 +49,7 @@ func TestCanUpdateBankAccountById(t *testing.T) {
 
 func TestCanDeleteBankAccount(t *testing.T) {
 	var error = db.DeleteBankAccountById(models.BankAccount{
-		ID: 1,
+		ID: "5fa81258-a019-11eb-bcbc-0242ac130002",
 	})
 	if error != nil {
 		log.Fatalln(error)

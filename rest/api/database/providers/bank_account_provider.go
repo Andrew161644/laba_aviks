@@ -5,12 +5,12 @@ import (
 	"github.com/Andrew161644/avicks_laba/api/database/models"
 )
 
-func (db Database) AddBankAccount(account models.BankAccount) (int, error) {
-	var id int
+func (db Database) AddBankAccount(account models.BankAccount) (string, error) {
+	var id string
 	query := `INSERT INTO bank_account (value, currencyid, userid) values ($1, $2, $3) RETURNING id`
 	err := db.Conn.QueryRow(query, account.Value, account.UserId, account.CurrencyId).Scan(&id)
 	if err != nil {
-		return 0, err
+		return "", err
 	}
 	return id, nil
 }
@@ -45,8 +45,8 @@ func (db Database) DeleteBankAccountById(account models.BankAccount) error {
 }
 
 func (db Database) UpdateBankAccountById(account models.BankAccount) (models.BankAccount, error) {
-	query := `UPDATE bank_account SET value=$1, currencyid=$2, userid=$3 WHERE id=$3 RETURNING id, value, currencyid, userid;`
-	err := db.Conn.QueryRow(query, account.Value, account.CurrencyId, account.UserId).Scan(&account.ID, &account.Value, &account.UserId, &account.CurrencyId)
+	query := `UPDATE bank_account SET value=$1, currencyid=$2, userid=$3 WHERE id=$4 RETURNING id, value, currencyid, userid;`
+	err := db.Conn.QueryRow(query, account.Value, account.CurrencyId, account.UserId, account.ID).Scan(&account.ID, &account.Value, &account.UserId, &account.CurrencyId)
 	if err != nil {
 		return models.BankAccount{}, err
 	}

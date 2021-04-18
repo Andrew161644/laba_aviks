@@ -2,26 +2,27 @@ package handlers
 
 import (
 	"fmt"
-	"io/ioutil"
+	cl "github.com/Andrew161644/avicks_laba/api/clients/organization_status_client"
 	"log"
 	"net/http"
 )
 
-var neiroHost = "http://neiro_service:5000/"
-
 func (app *Injection) NeiroServiceTest(w http.ResponseWriter, r *http.Request) {
-
-	resp, err := http.Get(neiroHost + "/")
-	if err != nil && resp != nil {
-		fmt.Println(w, "Error")
-		return
-	}
-
-	defer resp.Body.Close()
-	bodyBytes, err := ioutil.ReadAll(resp.Body)
+	var res, err = cl.CallGetOrgStatusInfo(cl.CalcUri, cl.OrgStatusRequestModel{
+		Name:            "",
+		BorrCap:         1,
+		OwnCap:          1,
+		BalanceCurr:     1,
+		AllCash:         1,
+		LongTimeDuties:  1,
+		ShortTermDuties: 1,
+		ShortFinInv:     1,
+		ShortRec:        1,
+		SumMoney:        1,
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
-	bodyString := string(bodyBytes)
-	fmt.Fprintf(w, bodyString)
+	log.Println(res)
+	fmt.Fprintf(w, res.Report)
 }
