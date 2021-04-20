@@ -32,7 +32,7 @@ def coefficient():
 def currency():
     if request.method=='POST':
         formData = request.form
-        value = int(formData['value'])
+        value = float(formData['value'])
         currentCurrencyName = formData['currentCurrencyName']
         newCurrencyName = formData['newCurrencyName']
         value, currentCurrencyName = currencyExchangeLib.curExchange(value, currentCurrencyName, newCurrencyName)

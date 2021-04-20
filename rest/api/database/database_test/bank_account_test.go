@@ -8,11 +8,8 @@ import (
 )
 
 func TestCanGetAccountsBuUserId(t *testing.T) {
-	var bankAccs, error = db.GetAllBankAccountsByUserId(models.UserModel{
-		ID:       6,
-		Name:     "",
-		Password: "",
-		RoleId:   1,
+	var bankAccs, error = db.GetAllBankAccountsByUserId(models.BankAccount{
+		UserId: 6,
 	})
 	if error != nil {
 		log.Fatal("Err: ", error)
