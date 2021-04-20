@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ .Title}}</title>
+    <link rel="stylesheet" href="../static/css/zerogrid.css">
+    <link rel="stylesheet" href="../static/css/main_bank.css">
+    <link rel="stylesheet" href="../static/css/responsive.css">
+    <script src="https://use.fontawesome.com/d74f62e351.js"></script>
+</head>
+<body>
+<div class="wrap-body">
+    <!--------------Header--------------->
+    <header>
+        <div class="wrap-header zerogrid">
+            <div id="logo"><img src="../static/images/logo.png"/></div>
+            <div id="exit"><a href="/logout">Выйти</a> </div>
+            <div id="nick">{{ .UserName}}</div>
+            <div id="login">
+                <ul class="social-icons-1">
+                    <li><a href="/login"><i class="fa fa-user"></i></a></li>
+                </ul>
+            </div>
+            <div id="company"><a>Моё предприятие</a></div>
+        </div>
+    </header>
+    <!--------------Content--------------->
+
+    <section id="content">
+        <div class="wrap-content zerogrid">
+            <div class="row block">
+                <div id="main-content" class="col-1-1">
+                    <div class="row">
+                        <div class="col-full">
+                            <div class="wrap-col">
+                                <article>
+                                    <div class="heading"><h1 class="title">Привет,<nobr id="nick"> {{ .UserName}}</nobr></h1></div>
+                                    <div class="heading"><h1 class="title"><div>Ваши счета</div></h1></div>
+                                    <div class="content" class="col-1-2">
+                                        <div clss="heading">
+                                            <h2 class="title">
+                                                <form>
+{{/*                                                    <h1>{{.PageTitle}}</h1>*/}}
+{{/*                                                    <ul>*/}}
+{{/*                                                        {{range .Todos}}*/}}
+{{/*                                                            {{if .Done}}*/}}
+{{/*                                                                <li class="done">{{.Title}}</li>*/}}
+{{/*                                                            {{else}}*/}}
+{{/*                                                                <li>{{.Title}}</li>*/}}
+{{/*                                                            {{end}}*/}}
+{{/*                                                        {{end}}*/}}
+{{/*                                                    </ul>*/}}
+                                                </form>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                    <div id="Navigation1">
+                                        <ul class="Navigation1">
+                                            <li><a href="#">Создать новый счёт</a>
+                                                <ul>
+                                                    <li><a href="#">RUB</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--------------Footer--------------->
+    <footer>
+        <div class="wrap-footer zerogrid">
+            <div class="row">
+                <div class="col-1-2">
+                    <div class="wrap-col">
+                        <div class="box">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1-2">
+                    <div class="wrap-col">
+                        <div class="box">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>2021</p>
+        </div>
+    </footer>
+
+</div>
+</body>
+</html>
