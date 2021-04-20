@@ -15,10 +15,10 @@ func (db Database) AddBankAccount(account models.BankAccount) (string, error) {
 	return id, nil
 }
 
-func (db Database) GetAllBankAccountsByUserId(model models.UserModel) (models.BankAccountList, error) {
+func (db Database) GetAllBankAccountsByUserId(account models.BankAccount) (models.BankAccountList, error) {
 	var bankAccs = models.BankAccountList{}
 	query := `SELECT * FROM bank_account WHERE userid = $1;`
-	rows, err := db.Conn.Query(query, model.ID)
+	rows, err := db.Conn.Query(query, account.UserId)
 	if err != nil {
 		return bankAccs, err
 	}
