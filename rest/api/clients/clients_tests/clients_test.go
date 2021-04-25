@@ -5,7 +5,6 @@ import (
 	"testing"
 )
 import (
-	. "github.com/Andrew161644/avicks_laba/api/clients/currency_exchange_client"
 	. "github.com/Andrew161644/avicks_laba/api/clients/organization_status_client"
 )
 
@@ -22,19 +21,6 @@ func TestMakeRequestOrgStatus(t *testing.T) {
 		ShortFinInv:     1,
 		ShortRec:        1,
 		SumMoney:        1,
-	})
-	if err != nil {
-		log.Fatal(err)
-	}
-	log.Println(res)
-}
-
-func TestMakeExcnahge(t *testing.T) {
-	var uri = "http://localhost:5000/currency"
-	var res, err = CallExchangeCurrency(uri, RequestCurrencyExchangeModel{
-		Value:               150.0,
-		CurrentCurrencyName: "RUB",
-		NewCurrencyName:     "USD",
 	})
 	if err != nil {
 		log.Fatal(err)

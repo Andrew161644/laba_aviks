@@ -8,10 +8,11 @@ import (
 	. "github.com/Andrew161644/avicks_laba/api/session"
 	"log"
 	"net/http"
+	"time"
 )
 
 // для запуска открываем в терминале и вводим
-//go run main.go -host=localhost
+//go run exchanger.go -host=localhost
 // запускаем только в контейнере
 func main() {
 	var conf, error = config.GetConfig()
@@ -37,8 +38,13 @@ func main() {
 	}
 	AddRoutes(app) // добавляет пути
 
+	log.Println("Listen: ", listen)
+
 	err = http.ListenAndServe(*listen, nil)
+	time.Sleep(10 * time.Second)
+
 	if err != nil {
 		log.Fatal(err)
 	}
+
 }

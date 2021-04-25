@@ -12,6 +12,15 @@ services:
       - POSTGRES_PASSWORD=postgres
     ports:
       - "5432:5432"
+
+  rabbitmq:
+    image: rabbitmq:management
+    command: rabbitmq-server
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
   neiro_service:
     depends_on:
       - db
@@ -22,9 +31,20 @@ services:
       - default
     ports:
       - "5000:5000"
+
+  currency_service:
+    depends_on:
+      - rabbitmq
+      - neiro_service
+    restart: on-failure
+    build:
+      context: ../../currency_exchanger
+      dockerfile: Dockerfile
+
   rest_service:
     depends_on:
       - db
+      - currency_service
       - neiro_service
     build:
       context: ../../rest
