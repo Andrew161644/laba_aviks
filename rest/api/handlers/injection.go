@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	. "github.com/Andrew161644/avicks_laba/api/config"
 	. "github.com/Andrew161644/avicks_laba/api/database/providers"
 	"github.com/Andrew161644/avicks_laba/api/handlers/views"
 	. "github.com/Andrew161644/avicks_laba/api/session"
@@ -12,6 +13,7 @@ import (
 type Injection struct {
 	DataBase    *Database
 	UserSession *UserSession
+	Conf        *Config
 }
 
 // создание сессии

@@ -1,12 +1,12 @@
 package main
 
 import (
-	. "github.com/Andrew161644/avicks_laba/api/handlers"
+	"github.com/Andrew161644/avicks_laba/api/handlers"
 	"net/http"
 )
 
 // пути для приложения(сопоставляем обработчикам)
-func AddRoutes(app Injection) {
+func AddRoutes(app handlers.Injection) {
 	http.HandleFunc("/main_page", app.HelloPageHandler)
 	http.HandleFunc("/about", app.AboutHandler)
 	http.HandleFunc("/developers", app.DevelopersSecureHandler)

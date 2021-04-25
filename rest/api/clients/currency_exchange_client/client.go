@@ -6,8 +6,6 @@ import (
 	"net/http"
 )
 
-var ExchangeUri = "http://neiro_service:5000/currency"
-
 func CallExchangeCurrency(uri string, rm RequestCurrencyExchangeModel) (*ResponseCurrencyExchangeModel, error) {
 	data := rm.AsUrlValues()
 	resp, err := http.PostForm(uri, data)

@@ -1,0 +1,9 @@
+Host = "localhost"
+Port = ":8080"
+DbHost = "db"
+DbPort = 5432
+DbUsername = "postgres"
+DbName = "postgres"
+DbPassword = "postgres"
+ExchangeUri = "http://neiro_service:5000/currency"
+CalcUri = "http://neiro_service:5000/coefficient"

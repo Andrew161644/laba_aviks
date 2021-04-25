@@ -2,9 +2,10 @@ package main
 
 import (
 	"flag"
+	"github.com/Andrew161644/avicks_laba/api/config"
 	"github.com/Andrew161644/avicks_laba/api/database/providers"
 	"github.com/Andrew161644/avicks_laba/api/handlers"
-	"github.com/Andrew161644/avicks_laba/api/session"
+	. "github.com/Andrew161644/avicks_laba/api/session"
 	"log"
 	"net/http"
 )
@@ -13,24 +14,27 @@ import (
 //go run main.go -host=localhost
 // запускаем только в контейнере
 func main() {
-	var host = flag.String("host", "db", "HTTP listen address")
-	flag.Parse()
-	log.Println("Use host: " + *host)
-	var db, err = providers.Connect(*host, 5432, "postgres", "postgres", "postgres")
+	var conf, error = config.GetConfig()
+	if error != nil {
+		log.Fatal(error)
+	}
+	var db, err = providers.Connect(conf.DbHost, conf.DbPort, conf.DbUsername, conf.DbPassword, conf.DbName)
 	if err != nil {
 		log.Fatal(err)
 	}
-	var app = handlers.Injection{
-		DataBase: db,
-	}
+
 	var (
-		listen = flag.String("listen", ":8080", "HTTP listen address")
+		listen = flag.String("listen", conf.Port, "HTTP listen address")
 	)
 	flag.Parse()
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("resources/static"))))
-	var session = session.CreateNewUserSession()
-	app.UserSession = &session
+	var session = CreateNewUserSession()
 
+	var app = handlers.Injection{
+		DataBase:    db,
+		UserSession: &session,
+		Conf:        conf,
+	}
 	AddRoutes(app) // добавляет пути
 
 	err = http.ListenAndServe(*listen, nil)

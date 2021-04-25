@@ -8,7 +8,7 @@ import (
 )
 
 func (app *Injection) NeiroServiceTest(w http.ResponseWriter, r *http.Request) {
-	var res, err = cl.CallGetOrgStatusInfo(cl.CalcUri, cl.OrgStatusRequestModel{
+	var res, err = cl.CallGetOrgStatusInfo(app.Conf.CalcUri, cl.OrgStatusRequestModel{
 		Name:            "",
 		BorrCap:         1,
 		OwnCap:          1,

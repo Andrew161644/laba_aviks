@@ -6,8 +6,6 @@ import (
 	"net/http"
 )
 
-var CalcUri = "http://neiro_service:5000/coefficient"
-
 func CallGetOrgStatusInfo(uri string, rm OrgStatusRequestModel) (*OrgStatusResponseModel, error) {
 	data := rm.AsUrlValues()
 	log.Println(data)
