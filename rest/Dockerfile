@@ -9,7 +9,7 @@ WORKDIR /go/github.com/Andrew161644/avicks_laba/api
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o build/avicks_laba github.com/Andrew161644/avicks_laba/api
 
 FROM alpine:3.9
-RUN apk add ca-certificates
+#RUN apk add ca-certificates
 COPY --from=build_base /go/github.com/Andrew161644/avicks_laba/api/build/avicks_laba /app/go-sample-app
 COPY api/resources /resources
 
