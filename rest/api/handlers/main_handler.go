@@ -47,12 +47,23 @@ func (app *Injection) NewsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-//Secure Handlers - защищенные обработчики
-
-// Защита страницы разработчиков - усл. пользователь в сессии
 func (app *Injection) DevelopersSecureHandler(w http.ResponseWriter, r *http.Request) {
 	var isLogin = app.UserSession.IsUserLogin(r)
 	if !isLogin {
+		w.WriteHeader(http.StatusForbidden)
+		return
+	}
+	id, _, error := app.UserSession.GetCurrentUserIdName(r)
+	if error != nil {
+		log.Fatal(error)
+	}
+	log.Println(id)
+	user, err := app.DataBase.GetUserById(id)
+	log.Println(user)
+	if err != nil {
+		log.Println(error)
+	}
+	if user.RoleId != 1 {
 		w.WriteHeader(http.StatusForbidden)
 		return
 	}

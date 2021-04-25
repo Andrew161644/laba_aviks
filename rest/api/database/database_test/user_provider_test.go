@@ -2,21 +2,15 @@ package database_test
 
 import (
 	"github.com/Andrew161644/avicks_laba/api/database/models"
-	"github.com/Andrew161644/avicks_laba/api/database/providers"
 	"log"
 	"testing"
 )
 
 // необходимо сначала поднять базу локально
-
-const host = "localhost"
-
-var db, err = providers.Connect(host, 5432, "postgres", "postgres", "postgres")
-
 func TestAddUser(t *testing.T) {
-	_, err = db.AddUser(models.UserModel{RoleId: 1, Name: "Andrew"})
+	_, err = db.AddUser(models.UserModel{RoleId: 1, Name: "Olgerd", Password: "olgerd"})
 	if err != nil {
-		t.Fatal(err.Error())
+		log.Fatal(err.Error())
 	}
 }
 
@@ -38,25 +32,25 @@ func TestGetUserByNameAndPassword(t *testing.T) {
 func TestCanGetUser(t *testing.T) {
 	_, err = db.GetUserById(1)
 	if err != nil {
-		t.Fatal(err.Error())
+		log.Fatal(err.Error())
 	}
 }
 
-func TestGetUserBuName(t *testing.T) {
+func TestGetUserByName(t *testing.T) {
 	user, err := db.GetUserByName("TestUser")
 	if err != nil {
-		t.Fatal(err.Error())
+		log.Fatal(err.Error())
 	}
 	if user.Name != "TestUser" {
-		t.Fatal("Expected error")
+		log.Fatal("Expected error")
 	}
-	t.Log(user)
+	log.Println(user)
 }
 
 func TestCanUpdateUser(t *testing.T) {
 	_, err = db.UpdateUser(1, models.UserModel{Name: "West", RoleId: 1})
 	if err != nil {
-		t.Fatal(err.Error())
+		log.Fatal(err.Error())
 	}
 }
 

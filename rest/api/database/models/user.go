@@ -9,6 +9,6 @@ type UserModel struct {
 }
 
 // Вспомогательная структура - список пользователей
-type List struct {
+type UserList struct {
 	Users []UserModel `json:"users"`
 }

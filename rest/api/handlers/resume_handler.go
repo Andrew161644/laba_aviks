@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"fmt"
+	"github.com/Andrew161644/avicks_laba/api/database/models"
 	"html/template"
 	"log"
 	"net/http"
@@ -29,7 +30,12 @@ func (app *Injection) ResumeHandler(w http.ResponseWriter, r *http.Request) {
 			speciality := r.FormValue("speciality")
 			about := r.FormValue("about")
 
-			log.Println(name, email, speciality, about)
+			app.DataBase.AddResume(models.Resume{
+				Name:       name,
+				Email:      email,
+				Speciality: speciality,
+				About:      about,
+			})
 
 			// возвращает страницу
 			tmpl, _ := template.ParseFiles("../resources/html/resume.html")
@@ -40,4 +46,13 @@ func (app *Injection) ResumeHandler(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
+}
+
+func (app *Injection) ResumeSecureHandler(w http.ResponseWriter, r *http.Request) {
+	var isLogin = app.UserSession.IsUserLogin(r)
+	if !isLogin {
+		w.WriteHeader(http.StatusForbidden)
+		return
+	}
+	app.ResumeHandler(w, r)
 }
