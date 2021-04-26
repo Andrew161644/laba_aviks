@@ -22,6 +22,7 @@
                 </ul>
             </div>
             <div id="company"><a>Моё предприятие</a></div>
+            <div id="accounts"><a>Мои счета</a></div>
         </div>
     </header>
 
@@ -38,42 +39,35 @@
                             <div class="wrap-col">
                                 <article>
                                     <div class="heading"><h1 class="title"><div id="nickname">{{ .UserName}}</div></h1></div>
-                                    <div class="heading"><h1 class="title"><div>Имя счёта</div></h1></div>
+                                    <div class="heading"><h1 class="title">Имя счёта</h1></div>
+                                   
 
                                     <div class="content" class="col-1-2">
-                                        <div>На счету: <nobr>2000</nobr> <nobr>EUR</nobr></div>
+                                        <div><h2>На счету: <nobr>2000</nobr> <nobr>EUR</nobr></h2></div>
+                                        <div class="extra"></div>
+                                        
+                                        <h3>Перевести деньги на:</h3>
+                                            <form id="contact-form2" method="post">
+                                                <select class="selcls2">
+                                                    <option selected class="Navigation1">{{.Title}}</option>
+                                                    <option class="Navigation1">{{.Title}}</option>
+                                                </select>
 
-                                        <form id="contact-form2" method="post" action="/login">
+                                                <fieldset>
+                                                    <label><input  onclick="" value="Введите сумму" maxlength="10" onBlur="if(this.value=='') this.value='Введите сумму'" onFocus="if(this.value =='Введите сумму' ) this.value=''"/></label>
+                                                    <label> <a><input type="submit" value="Перевести" ></a></label>
+                                                </fieldset>
+                                            </form>
+                                        <div class="extra"></div>
+
+                                        <h3>Пополнить счёт</h3>
+                                        <form id="contact-form2" method="post">
                                             <fieldset>
                                                 <label><input  onclick="" value="Введите сумму" maxlength="10" onBlur="if(this.value=='') this.value='Введите сумму'" onFocus="if(this.value =='Введите сумму' ) this.value=''"/></label>
+                                              <div> <label ><a ><input type="submit" value="Пополнить" ></a></label></div>  
                                             </fieldset>
-
-                                            <div id="Navigation2">
-                                                <ul class="Navigation2">
-                                                    <li><a href="#">Перевод</a>
-                                                        <ul>
-                                                            <li><a href="#">RUB</a></li>
-                                                            <li><a href="#">EUR</a></li>
-                                                            <li><a href="#">USB</a></li>
-                                                            <li><a href="#">FRG</a></li>
-                                                            <li><a href="#">GBN</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </div>
-
                                         </form>
-                                        <form id="contact-form2" method="post" action="/login">
-                                            <fieldset>
-                                                <label><input  onclick="" value="Введите сумму" maxlength="10" onBlur="if(this.value=='') this.value='Введите сумму'" onFocus="if(this.value =='Введите сумму' ) this.value=''"/></label>
-                                            </fieldset>
-                                            <div class="buttons2">
-                                                <ul>
-                                                    <li><a><input type="submit" value="Пополнить"/></a></li>
-                                                </ul>
-                                            </div>
-
-                                        </form>
+                                        <div class="extra"></div>
                                     </div>
                                 </article>
                             </div>
@@ -97,7 +91,6 @@
                 <div class="col-1-2">
                     <div class="wrap-col">
                         <div class="box">
-
                         </div>
                     </div>
                 </div>
