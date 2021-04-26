@@ -1,6 +1,6 @@
 
 /* ------------------Reset--------------------- */
-a,abbr,acronym,address,applet,article,aside,audio,b,blockquote,big,body,center,canvas,caption,cite,code,command,datalist,dd,del,details,dfn,dl,div,dt,em,embed,fieldset,figcaption,figure,font,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,keygen,label,legend,li,meter,nav,object,ol,output,p,pre,progress,q,s,samp,section,small,span,source,strike,strong,sub,sup,table,tbody,tfoot,thead,th,tr,tdvideo,tt,u,ul,var{background:transparent;border:0 none;font-size:100%;margin:0;padding:0;border:0;outline:0;vertical-align:top;}ol, ul {list-style:none;}blockquote, q {quotes:none;}table, table td {padding:0;border:none;border-collapse:collapse;}img {vertical-align:top;}embed {vertical-align:top;}
+a,abbr,acronym,address,applet,article,aside,audio,b,blockquote,big,body,center,canvas,caption,cite,code,command,datalist,dd,del,details,dfn,dl,div,dt,em,embed,figcaption,figure,font,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,keygen,label,legend,li,meter,nav,object,ol,output,p,pre,progress,q,s,samp,section,small,span,source,strike,strong,sub,sup,table,tbody,tfoot,thead,th,tr,tdvideo,tt,u,ul,var{background:transparent;border:0 none;font-size:100%;margin:0;padding:0;border:0;outline:0;vertical-align:top;}ol, ul {list-style:none;}blockquote, q {quotes:none;}table, table td {padding:0;border:none;border-collapse:collapse;}img {vertical-align:top;}embed {vertical-align:top;}
 article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video {display:block;}
 mark, rp, rt, ruby, summary, time {display:inline;}
 input, textarea {border:0; padding:0; margin:0; outline: 0;}
@@ -56,7 +56,11 @@ header #nick a hover{float: right; margin-top:15px; color:#000000;}
 header #company{float: right; margin-top:15px; color:#2ECC71;}
 header #company a{float: right; margin-top:15px; color:#2ECC71;}
 header #company a hover{float: right; margin-top:15px; color:#000000;}
-header #company:hover a{float: right; margin-top:15px;margin-left: 5px; color:#EEEEEE;}
+header #company:hover a{float: right; margin-top:15px; color:#EEEEEE;}
+
+header #accounts{float: right; margin-top:15px; color:#2ECC71;margin-right: 15px;}
+header #accounts a{float: right; margin-top:15px; color:#2ECC71;}
+header #accounts:hover a{float: right; margin-top:15px; color:#EEEEEE;}
 
 header #exit{float: right; margin-top:15px;margin-left: 5px; color:#2ECC71; }
 header #exit:hover{float: right; margin-top:15px;margin-left: 5px; color:#c92525;}
@@ -111,8 +115,8 @@ nav .wrap-nav{float: right;}
 #main-content article p{margin-bottom:10px;}
 #main-content article .extra{background: #2ECC71; padding: 10px 20px;}
 #main-content article .more {float: right;}
-#main-content article .info{float: left; color: #ffffff;}
-#main-content article .info a{text-decoration: underline; color:#ffffff;}
+#main-content article .info{float: left; color: #000000;}
+#main-content article .info a{text-decoration: underline; color:#000000;}
 
 #sidebar{}
 #sidebar .box {margin-bottom:20px; background:#ffffff;}
@@ -131,7 +135,7 @@ nav .wrap-nav{float: right;}
 /* ------------------Form------------------- */
 #comment{padding: 30px 40px;}
 
-#contact-form {width:500px;}
+#contact-form {width:400px;}
 #contact-form label {
     display:block;
     height:44px;
@@ -141,8 +145,8 @@ nav .wrap-nav{float: right;}
     width:100%;
     font-size:15px;
     line-height:1.2em;
-    color:#a0a0a0;
-    padding:8px 15px;
+    color:#000000;
+    padding:8px 0px;
     margin:0;
     font-family:Arial, Helvetica, sans-serif;
     border:1px solid #eeeeee;
@@ -156,7 +160,7 @@ nav .wrap-nav{float: right;}
     font-size:15px;
     line-height:1.2em;
     color:#a0a0a0;
-    padding:7px 15px;
+    padding:7px 15p000x;
     margin:0;
     font-family:Arial, Helvetica, sans-serif;
     border:1px solid #eeeeee;
@@ -165,6 +169,27 @@ nav .wrap-nav{float: right;}
 
 
 }
+#contact-form fieldset {
+    width: 800px;
+    border: 2px solid #2ECC71;
+    margin-bottom: 5px;
+}
+
+#contact-form  a input {
+    color: #000000;
+    background-color: #e0d4d4de;
+}
+#contact-form  a input :hover{
+    color: #2ECC71;
+    background-color: #c20404de;
+    border-radius: 1px;
+}
+#contact-form  a :hover{
+    color: #2ECC71;
+    background-color: #f5f5f5de;
+    border-radius: 5px;
+}
+
 
 #contact-form2 {width:200px;}
 #contact-form2 label {
@@ -176,7 +201,8 @@ nav .wrap-nav{float: right;}
     font-size:15px;
     line-height:1.2em;
     color:#a0a0a0;
-    padding:8px 15px;
+    text-align: center;
+    padding:8px 0px;
     margin:0;
     font-family:Arial, Helvetica, sans-serif;
     border:1px solid #eeeeee;
@@ -186,7 +212,6 @@ nav .wrap-nav{float: right;}
 #contact-form2 textarea {
     height: 158px;
     overflow: auto;
-    width: 100%;
     font-size: 15px;
     line-height: 1.2em;
     color: #a0a0a0;
@@ -197,17 +222,47 @@ nav .wrap-nav{float: right;}
     background: #ffffff;
     outline: none;
 }
-.buttons {padding-top:17px; text-align:right}
-.buttons a {margin-left:30px}
-.buttons a hover{color:#2ECC71;}
+#contact-form2  a input {
+    color: #000000;
+    background-color: #e0d4d4de;
+}
+#contact-form2  a input :hover{
+    color: #2ECC71;
+    background-color: #c20404de;
+    border-radius: 1px;
+}
+#contact-form2  a :hover{
+    color: #2ECC71;
+    background-color: #f5f5f5de;
+    border-radius: 5px;
+}
 
-.buttons2 {width:232px;}
+.buttons a {margin-left:5px}
+.buttons a :hover{color:#2ECC71;}
+.buttons input {
+    font-size:15px;
+    color:#000000;
+    padding:8px 15px;
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    border:1px solid #eeeeee;
+    background: #ffffff;
+    outline:none;
+}
+
+.buttons a input :hover{
+    color: #2ECC71;
+    background-color: #c20404de;
+    border-radius: 1px;
+}
+
+.buttons2 {margin-bottom: 5px;margin-top: 5px;}
 .buttons2 li {width:232px;margin-bottom: 5px;margin-top: 5px;}
 
 .buttons3 {text-align: center;margin-top: 20px;margin-left: 45px;}
 
 /* ------------------Footer-------------------- */
-footer {background-color:#333333; margin-top:120px;}
+footer {background-color:#333333; margin-top:260px;}
 footer .wrap-footer{padding:10px 0px; color:#ffffff;}
 footer .box .heading{ padding:5px; border-bottom:1px dotted #ffffff;}
 footer .box .heading .title{padding:0 10px; color:#ffffff;}
@@ -351,3 +406,45 @@ footer .box .content .gallery img{}
     display: block;
 }
 
+.selcls {
+
+    height: 35px;
+    width: 250px;
+    float: left;
+    text-align: center;
+    list-style: none;
+    font:16px "Bonveno", "Century Gothic";
+    padding: 0;
+    margin: 0;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #2ECC71;
+    box-shadow: 0 1px 0 rgba(255,255,255, .9) inset, 0 1px 3px rgba(0,0,0, .1);
+    border-radius: 3px;
+    margin-right:20px;
+    margin-bottom: 5px;
+
+}
+
+.selcls2 {
+
+    height: 35px;
+    width: 280px;
+    float: left;
+    text-align: center;
+    list-style: none;
+    font:16px "Bonveno", "Century Gothic";
+    padding: 0;
+    margin: 0;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #2ECC71;
+    box-shadow: 0 1px 0 rgba(255,255,255, .9) inset, 0 1px 3px rgba(0,0,0, .1);
+    border-radius: 3px;
+    margin-right:20px;
+    margin-bottom: 5px;
+
+}
+.content fieldset{
+    width: 250px;
+    border: 1px solid #2ECC71;
+    margin-bottom: 5px;
+}

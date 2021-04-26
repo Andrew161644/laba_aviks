@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ .Title}}</title>
+    <link rel="stylesheet" href="../static/css/zerogrid.css">
+    <link rel="stylesheet" href="../static/css/main_bank.css">
+    <link rel="stylesheet" href="../static/css/responsive.css">
+    <script src="https://use.fontawesome.com/d74f62e351.js"></script>
+</head>
+<body>
+<div class="wrap-body">
+    <!--------------Header--------------->
+    <header>
+        <div class="wrap-header zerogrid">
+            <div id="logo"><img src="../static/images/logo.png"/></div>
+            <div id="exit"><a href="/logout">Выйти</a> </div>
+            <div id="nick">{{ .UserName}}</div>
+            <div id="login">
+                <ul class="social-icons-1">
+                    <li><a href="/login"><i class="fa fa-user"></i></a></li>
+                </ul>
+            </div>
+            <div id="company"><a>Моё предприятие</a></div>
+            <div id="accounts"><a>Мои счета</a></div>
+        </div>
+    </header>
+
+    <!--------------Content--------------->
+
+
+
+    <section id="content">
+        <div class="wrap-content zerogrid">
+            <div class="row block">
+                <div id="main-content" class="col-1-1">
+                    <div class="row">
+                        <div class="col-full">
+                            <div class="wrap-col">
+                                <article>
+                                    <div class="content" class="col-1-2">
+                                        
+                                        <h1>Анализ финансового состояния предприятия</h1>
+                                     
+                                        <form id="contact-form" action="/coefficient" method="post">
+                                            <fieldset>
+                                                <p> Имя компании:</p>
+                                                <input type="text" name="name" value="" required>
+                                                <p>Заемный капитал:</p>
+                                                <input type="number" min="0" name="borrCap" value="" required>
+                                                <p>Собственный капитал:</p>
+                                                <input type="number" min="0" name="ownCap" value="" required>
+                                                <p>Валюта баланса:</p>
+                                                <input type="number" min="0" name="balanceCurr" value="" required>
+                                                <p>Денежные средства:</p>
+                                                <input type="number" min="0" name="allCash" value="" required>
+                                                <p>Долгосрочные обязательства:</p>
+                                                <input type="number" min="0" name="longTermDuties" value="" required>
+                                                <p>Кратксрочные обязательства:</p>
+                                                <input type="number" min="0" name="shortTermDuties" value="" required>
+                                                <p>Краткосрочные финансовые вложения:</p>
+                                                <input type="number" min="0" name="shortFinInv" value="" required>
+                                                <p>Краткосрочная дебиторская задолженности:</p>
+                                                <input type="number" min="0" name="shortRec" value="" required>
+                                                <p>Общая сумма ликвидных оборотных средств:</p>
+                                                <input type="number" min="0" name="sumMoney" value="" required>
+
+                                                <label> <a><input type="submit" value="Отправить" ></a></label>
+                                        </fieldset>
+                                        </form>
+
+                                        <div id="contact-form">
+                                            <fieldset >
+                                                <p>{{kk}}</p>
+                                                <p>{{kn}}</p>
+                                                <p>{{kfin}}</p>
+                                                <p>{{kfu}}</p>
+                                                <p>{{kabsl}}</p>
+                                                <p>{{kfastl}}</p>
+                                                <p>{{kcurrl}}</p>
+                                             </fieldset>
+                                        </div>
+                                        <h2>{{titleReport}}</h2>
+                                        <div id="contact-form">
+                                            <fieldset>
+                                                <p>{{report}}</p>
+                                            </fieldset>
+                                        </div>
+                                       
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--------------Footer--------------->
+    <footer>
+        <div class="wrap-footer zerogrid">
+            <div class="row">
+                <div class="col-1-2">
+                    <div class="wrap-col">
+                        <div class="box">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1-2">
+                    <div class="wrap-col">
+                        <div class="box">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>2021</p>
+        </div>
+    </footer>
+
+</div>
+</body>
+</html>

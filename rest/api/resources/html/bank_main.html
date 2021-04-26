@@ -22,6 +22,7 @@
                 </ul>
             </div>
             <div id="company"><a>Моё предприятие</a></div>
+            <div id="accounts"><a>Мои счета</a></div>
         </div>
     </header>
     <!--------------Content--------------->
@@ -37,32 +38,32 @@
                                     <div class="heading"><h1 class="title">Привет,<nobr id="nick"> {{ .UserName}}</nobr></h1></div>
                                     <div class="heading"><h1 class="title"><div>Ваши счета</div></h1></div>
                                     <div class="content" class="col-1-2">
-                                        <div clss="heading">
+                                        <div>
+                                            <div class="extra"></div>
                                             <h2 class="title">
                                                 <form>
-{{/*                                                    <h1>{{.PageTitle}}</h1>*/}}
-{{/*                                                    <ul>*/}}
-{{/*                                                        {{range .Todos}}*/}}
-{{/*                                                            {{if .Done}}*/}}
-{{/*                                                                <li class="done">{{.Title}}</li>*/}}
-{{/*                                                            {{else}}*/}}
-{{/*                                                                <li>{{.Title}}</li>*/}}
-{{/*                                                            {{end}}*/}}
-{{/*                                                        {{end}}*/}}
-{{/*                                                    </ul>*/}}
+                                                    <h1></h1>
+                                                    <ul>
+                                                        <li><a>EUR</a></li>
+                                                        <li><a>RUB</a></li>
+                                                        
+                                                    </ul>
                                                 </form>
                                             </h2>
                                         </div>
+                                        <div class="extra"></div>
+                                        <form >
+                                            <h1>Создать новый счёт</h1>
+                                            <div><select class="selcls">
+                                                    <option selected class="Navigation1">{{.Title}}</option>
+                                                    <option class="Navigation1">{{.Title}}</option>
+                                                </select>
+                                               <div class ="buttons" ><a ><input type="submit" value="Создать" ></a></div> 
+                                            </div>
+                                        </form>
+    
                                     </div>
-                                    <div id="Navigation1">
-                                        <ul class="Navigation1">
-                                            <li><a href="#">Создать новый счёт</a>
-                                                <ul>
-                                                    <li><a href="#">RUB</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                
                                 </article>
                             </div>
                         </div>
