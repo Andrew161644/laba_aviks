@@ -5,15 +5,17 @@ import (
 )
 
 type Config struct {
-	Host        string
-	Port        string
-	DbHost      string
-	DbPort      int
-	DbUsername  string
-	DbName      string
-	DbPassword  string
-	ExchangeUri string
-	CalcUri     string
+	Host            string
+	Port            string
+	DbHost          string
+	DbPort          int
+	DbUsername      string
+	DbName          string
+	DbPassword      string
+	CalcUri         string
+	RabbitHost      string
+	LocalRabbitHost string
+	QueueName       string
 }
 
 func GetConfig() (*Config, error) {

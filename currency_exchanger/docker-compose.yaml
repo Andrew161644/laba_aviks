@@ -1,16 +1,12 @@
 version: "3.9"
 services:
   rabbitmq:
-    image: rabbitmq
+    image: rabbitmq:management
     command: rabbitmq-server
-    expose:
-      - 5672
-      - 15672
-    healthcheck:
-      test: [ "CMD", "nc", "-z", "localhost", "5672" ]
-      interval: 5s
-      timeout: 15s
-      retries: 1
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
   currency_service:
     depends_on:
       - rabbitmq

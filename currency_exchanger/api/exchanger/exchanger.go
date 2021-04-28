@@ -2,6 +2,7 @@ package exchanger
 
 import (
 	"encoding/xml"
+	. "github.com/Andrew161644/currency_exchange/api/task"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -18,18 +19,19 @@ type Envelope struct {
 	} `xml:"Cube>Cube"`
 }
 
-func GetRate(val float64, input string, output string, env Envelope) float64 {
-	if output == "EUR" {
-		var inputRate = GetRateUERtoInput(input, env)
+func GetRate(task CurrencyExchangeTask) float64 {
+	var env = GetEnvelope()
+	if task.NewCurrencyName == "EUR" {
+		var inputRate = GetRateUERtoInput(task.CurrentCurrencyName, env)
 		var f, _ = strconv.ParseFloat(inputRate, 8)
-		var eur = val / f
+		var eur = task.Value / f
 		return eur
 	}
 
-	var inputRate = GetRateUERtoInput(input, env)
+	var inputRate = GetRateUERtoInput(task.CurrentCurrencyName, env)
 	var f, _ = strconv.ParseFloat(inputRate, 8)
-	var eur = val / f
-	var outRate = GetRateUERtoInput(output, env)
+	var eur = task.Value / f
+	var outRate = GetRateUERtoInput(task.NewCurrencyName, env)
 	f, _ = strconv.ParseFloat(outRate, 8)
 	return f * eur
 }

@@ -3,36 +3,26 @@ package main
 import (
 	"encoding/json"
 	"github.com/Andrew161644/currency_exchange/api/exchanger"
-	. "github.com/Andrew161644/currency_exchange/api/model"
+	. "github.com/Andrew161644/currency_exchange/api/subcriber"
+	. "github.com/Andrew161644/currency_exchange/api/task"
 	"github.com/streadway/amqp"
 	"log"
-	"os"
 )
 
 func handleError(err error, msg string) {
 	if err != nil {
 		log.Fatalf("%s: %s", msg, err)
 	}
-
 }
 
+var dockerHost = "amqp://guest:guest@rabbitmq:5672/"
+var localHost = "amqp://guest:guest@localhost:5672/"
+
 func main() {
-	conn, err := amqp.Dial(Config.AMQPConnectionURL)
-
-	handleError(err, "Can't connect to AMQP")
+	var conn, amqpChannel, queue = Connect(dockerHost, "exchange")
 	defer conn.Close()
-
-	amqpChannel, err := conn.Channel()
-	handleError(err, "Can't create a amqpChannel")
-
 	defer amqpChannel.Close()
-
-	queue, err := amqpChannel.QueueDeclare("add", true, false, false, false, nil)
-	handleError(err, "Could not declare `add` queue")
-
-	err = amqpChannel.Qos(1, 0, false)
-	handleError(err, "Could not configure QoS")
-
+	//amqpChannel.QueueDelete()
 	messageChannel, err := amqpChannel.Consume(
 		queue.Name,
 		"",
@@ -42,38 +32,46 @@ func main() {
 		false,
 		nil,
 	)
+
 	handleError(err, "Could not register consumer")
 
-	stopChan := make(chan bool)
+	res := make(chan CurrencyExchangeTask)
+	ListenMessageQueue(
+		res,
+		messageChannel,
+		Handle)
 
-	go func() {
-		log.Printf("Consumer ready, PID: %d", os.Getpid())
-		for d := range messageChannel {
-			log.Printf("Received a message: %s", d.Body)
+	num, opened := <-res
 
-			addTask := &RequestCurrencyExchangeModel{}
+	if opened {
+		log.Println(num)
+	}
+}
 
-			err := json.Unmarshal(d.Body, addTask)
+func Handle(result chan CurrencyExchangeTask, task CurrencyExchangeTask) {
+	defer close(result)
 
-			if err != nil {
-				log.Printf("Error decoding JSON: %s", err)
-			}
+	var conn, amqpChannel, _ = Connect(dockerHost, task.ResultQueueName)
+	defer conn.Close()
+	defer amqpChannel.Close()
 
-			log.Println(exchanger.GetRate(
-				addTask.Value,
-				addTask.CurrentCurrencyName,
-				addTask.NewCurrencyName,
-				exchanger.GetEnvelope()))
+	var res = exchanger.GetRate(task)
+	task.Result = res
+	log.Println(task)
+	body, err := json.Marshal(task)
+	if err != nil {
+		handleError(err, "Error encoding JSON")
+	}
 
-			if err := d.Ack(false); err != nil {
-				log.Printf("Error acknowledging message : %s", err)
-			} else {
-				log.Printf("Acknowledged message")
-			}
+	err = amqpChannel.Publish("", task.ResultQueueName, false, false, amqp.Publishing{
+		DeliveryMode: amqp.Persistent,
+		ContentType:  "text/plain",
+		Body:         body,
+	})
 
-		}
-	}()
+	if err != nil {
+		log.Fatalf("Error publishing message: %s", err)
+	}
 
-	// Stop for program termination
-	<-stopChan
+	result <- task
 }

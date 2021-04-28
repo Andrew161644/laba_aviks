@@ -1,12 +1,12 @@
-package main
+package publisher_tests
 
 import (
 	"encoding/json"
-	. "github.com/Andrew161644/currency_exchange/api/model"
+	. "github.com/Andrew161644/currency_exchange/api/subcriber"
+	. "github.com/Andrew161644/currency_exchange/api/task"
 	"github.com/streadway/amqp"
 	"log"
-	"math/rand"
-	"time"
+	"testing"
 )
 
 func handleError(err error, msg string) {
@@ -15,27 +15,17 @@ func handleError(err error, msg string) {
 	}
 }
 
-func main() {
-	conn, err := amqp.Dial("http://rabbitmq:5672/")
-	handleError(err, "Can't connect to AMQP")
+func TestCanPablish(t *testing.T) {
+	var conn, amqpChannel, queue = Connect("amqp://guest:guest@localhost:5672/", "exchange")
 	defer conn.Close()
-
-	amqpChannel, err := conn.Channel()
-	handleError(err, "Can't create a amqpChannel")
-
 	defer amqpChannel.Close()
 
-	queue, err := amqpChannel.QueueDeclare("add", true, false, false, false, nil)
-	handleError(err, "Could not declare `add` queue")
-
-	rand.Seed(time.Now().UnixNano())
-
-	addTask := RequestCurrencyExchangeModel{
+	exchangeTask := CurrencyExchangeTask{
 		Value:               180,
 		CurrentCurrencyName: "RUB",
 		NewCurrencyName:     "EUR",
 	}
-	body, err := json.Marshal(addTask)
+	body, err := json.Marshal(exchangeTask)
 	if err != nil {
 		handleError(err, "Error encoding JSON")
 	}
@@ -50,6 +40,5 @@ func main() {
 		log.Fatalf("Error publishing message: %s", err)
 	}
 
-	log.Printf("%f", addTask.Value)
-
+	log.Printf("%f", exchangeTask.Value)
 }

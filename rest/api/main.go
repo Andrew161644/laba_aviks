@@ -8,7 +8,6 @@ import (
 	. "github.com/Andrew161644/avicks_laba/api/session"
 	"log"
 	"net/http"
-	"time"
 )
 
 // для запуска открываем в терминале и вводим
@@ -41,10 +40,8 @@ func main() {
 	log.Println("Listen: ", listen)
 
 	err = http.ListenAndServe(*listen, nil)
-	time.Sleep(10 * time.Second)
 
 	if err != nil {
 		log.Fatal(err)
 	}
-
 }

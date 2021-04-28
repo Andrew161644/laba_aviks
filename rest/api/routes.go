@@ -15,6 +15,7 @@ func AddRoutes(app handlers.Injection) {
 	http.HandleFunc("/registration", app.RegistartionHandlerHandler)
 	http.HandleFunc("/logout", app.LogOutHandler)
 	http.HandleFunc("/find_dev", app.ResumeSecureHandler)
+	http.HandleFunc("/call_rabbit", app.SendTaskExample)
 	http.HandleFunc("/call_python_test", app.NeiroServiceTest)
 	http.HandleFunc("/bank_account", app.BankAccountHandler)
 	http.HandleFunc("/bank_main", app.BankMainHandler)
