@@ -9,7 +9,7 @@ import (
 
 func TestCanGetAccountsBuUserId(t *testing.T) {
 	var bankAccs, error = db.GetAllBankAccountsByUserId(models.BankAccount{
-		UserId: 6,
+		UserId: 7,
 	})
 	if error != nil {
 		log.Fatal("Err: ", error)

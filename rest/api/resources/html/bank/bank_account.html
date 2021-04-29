@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!--страница счета-->
     <meta charset="UTF-8">
     <title>{{ .Title}}</title>
-    <link rel="stylesheet" href="../static/css/zerogrid.css">
-    <link rel="stylesheet" href="../static/css/main_bank.css">
-    <link rel="stylesheet" href="../static/css/responsive.css">
+    <link rel="stylesheet" href="../../static/css/zerogrid.css">
+    <link rel="stylesheet" href="../../static/css/main_bank.css">
+    <link rel="stylesheet" href="../../static/css/responsive.css">
     <script src="https://use.fontawesome.com/d74f62e351.js"></script>
 </head>
 <body>
@@ -13,7 +14,7 @@
     <!--------------Header--------------->
     <header>
         <div class="wrap-header zerogrid">
-            <div id="logo"><img src="../static/images/logo.png"/></div>
+            <div id="logo"><img src="../../static/images/logo.png"/></div>
             <div id="exit"><a href="/logout">Выйти</a> </div>
             <div id="nick">{{ .UserName}}</div>
             <div id="login">
@@ -43,14 +44,16 @@
                                    
 
                                     <div class="content" class="col-1-2">
-                                        <div><h2>На счету: <nobr>2000</nobr> <nobr>EUR</nobr></h2></div>
+                                        <div><h2>На счету: {{.AccountValue}} {{Currency}}</h2></div>
                                         <div class="extra"></div>
                                         
                                         <h3>Перевести деньги на:</h3>
                                             <form id="contact-form2" method="post">
                                                 <select class="selcls2">
-                                                    <option selected class="Navigation1">{{.Title}}</option>
-                                                    <option class="Navigation1">{{.Title}}</option>
+                                                    <!--счета пользователей-->
+                                                    {{range .BankAccounts}}
+                                                    <option selected class="Navigation1">{{.BankAccountId}}   {{.Currency}}</option>
+                                                    {{end}}
                                                 </select>
 
                                                 <fieldset>
@@ -63,7 +66,7 @@
                                         <h3>Пополнить счёт</h3>
                                         <form id="contact-form2" method="post">
                                             <fieldset>
-                                                <label><input  onclick="" value="Введите сумму" maxlength="10" onBlur="if(this.value=='') this.value='Введите сумму'" onFocus="if(this.value =='Введите сумму' ) this.value=''"/></label>
+                                                <label><input  name = "add_value" onclick="" value="Введите сумму" maxlength="10" onBlur="if(this.value=='') this.value='Введите сумму'" onFocus="if(this.value =='Введите сумму' ) this.value=''"/></label>
                                               <div> <label ><a ><input type="submit" value="Пополнить" ></a></label></div>  
                                             </fieldset>
                                         </form>

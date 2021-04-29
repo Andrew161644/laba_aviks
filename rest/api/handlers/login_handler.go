@@ -38,6 +38,6 @@ func (app *Injection) LoginDevHandler(w http.ResponseWriter, r *http.Request) {
 		var userData = ToUserData(user)
 		app.UserSession.LoginUser(w, r, app.DataBase, &userData)
 
-		app.HelloPageHandler(w, r)
+		app.BankMainHandler(w, r)
 	}
 }

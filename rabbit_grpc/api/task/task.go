@@ -1,7 +1,7 @@
 package task
 
 type CurrencyExchangeTask struct {
-	ResultQueueName     string  `json:"result_queue_name"`
+	UserId              int     `json:"user_id"`
 	Value               float64 `json:"value"`
 	CurrentCurrencyName string  `json:"currentCurrencyName"`
 	NewCurrencyName     string  `json:"newCurrencyName"`

@@ -8,7 +8,7 @@ import (
 func (db Database) AddBankAccount(account models.BankAccount) (string, error) {
 	var id string
 	query := `INSERT INTO bank_account (value, currencyid, userid) values ($1, $2, $3) RETURNING id`
-	err := db.Conn.QueryRow(query, account.Value, account.UserId, account.CurrencyId).Scan(&id)
+	err := db.Conn.QueryRow(query, account.Value, account.CurrencyId, account.UserId).Scan(&id)
 	if err != nil {
 		return "", err
 	}
@@ -24,7 +24,7 @@ func (db Database) GetAllBankAccountsByUserId(account models.BankAccount) (model
 	}
 	for rows.Next() {
 		var bankAcc = models.BankAccount{}
-		err := rows.Scan(&bankAcc.ID, &bankAcc.Value, &bankAcc.UserId, &bankAcc.CurrencyId)
+		err := rows.Scan(&bankAcc.ID, &bankAcc.CurrencyId, &bankAcc.UserId, &bankAcc.Value)
 		if err != nil {
 			return bankAccs, err
 		}

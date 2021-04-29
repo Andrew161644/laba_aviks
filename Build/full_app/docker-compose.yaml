@@ -38,7 +38,7 @@ services:
       - neiro_service
     restart: on-failure
     build:
-      context: ../../currency_exchanger
+      context: ../../rabbit_grpc
       dockerfile: Dockerfile
 
   rest_service:

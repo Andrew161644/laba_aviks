@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!--главная страница пользователя-->
     <meta charset="UTF-8">
     <title>{{ .Title}}</title>
-    <link rel="stylesheet" href="../static/css/zerogrid.css">
-    <link rel="stylesheet" href="../static/css/main_bank.css">
-    <link rel="stylesheet" href="../static/css/responsive.css">
+    <link rel="stylesheet" href="../../static/css/zerogrid.css">
+    <link rel="stylesheet" href="../../static/css/main_bank.css">
+    <link rel="stylesheet" href="../../static/css/responsive.css">
     <script src="https://use.fontawesome.com/d74f62e351.js"></script>
 </head>
 <body>
@@ -13,8 +14,8 @@
     <!--------------Header--------------->
     <header>
         <div class="wrap-header zerogrid">
-            <div id="logo"><img src="../static/images/logo.png"/></div>
-            <div id="exit"><a href="/logout">Выйти</a> </div>
+            <div id="logo"><img src="../../static/images/logo.png"/></div>
+            <div id="exit"><a href="/logout">Выйти</a></div>
             <div id="nick">{{ .UserName}}</div>
             <div id="login">
                 <ul class="social-icons-1">
@@ -35,35 +36,44 @@
                         <div class="col-full">
                             <div class="wrap-col">
                                 <article>
-                                    <div class="heading"><h1 class="title">Привет,<nobr id="nick"> {{ .UserName}}</nobr></h1></div>
-                                    <div class="heading"><h1 class="title"><div>Ваши счета</div></h1></div>
+                                    <div class="heading">
+                                        <h1 class="title">Привет,
+                                            <nobr id="nick"> {{ .UserName}}</nobr>
+                                        </h1>
+                                    </div>
+                                    <div class="heading">
+                                        <h1 class="title">
+                                            <div>Ваши счета</div>
+                                        </h1>
+                                    </div>
                                     <div class="content" class="col-1-2">
                                         <div>
                                             <div class="extra"></div>
                                             <h2 class="title">
                                                 <form>
-                                                    <h1></h1>
                                                     <ul>
-                                                        <li><a>EUR</a></li>
-                                                        <li><a>RUB</a></li>
-                                                        
+                                                        {{range .BankAccounts}}
+                                                        <li><a>{{.ID}} {{.Currency}}</a></li>
+                                                        {{end}}
                                                     </ul>
                                                 </form>
                                             </h2>
                                         </div>
                                         <div class="extra"></div>
-                                        <form >
+                                        <form method="post" action="/bank_main">
                                             <h1>Создать новый счёт</h1>
-                                            <div><select class="selcls">
-                                                    <option selected class="Navigation1">{{.Title}}</option>
-                                                    <option class="Navigation1">{{.Title}}</option>
+                                            <div>
+                                                <select class="selcls" name="ID" >
+                                                {{range .Currencies}}
+                                                <option selected class="Navigation1" value="{{.ID}}">{{.Name}}</option>
+                                                {{end}}
                                                 </select>
-                                               <div class ="buttons" ><a ><input type="submit" value="Создать" ></a></div> 
+                                                <div class="buttons"><a><input type="submit" value="Создать"></a></div>
                                             </div>
                                         </form>
-    
+
                                     </div>
-                                
+
                                 </article>
                             </div>
                         </div>

@@ -2,7 +2,7 @@ package exchanger
 
 import (
 	"encoding/xml"
-	. "github.com/Andrew161644/currency_exchange/api/task"
+	. "github.com/Andrew161644/currency_exchange_grpc/api/task"
 	"io/ioutil"
 	"log"
 	"net/http"
