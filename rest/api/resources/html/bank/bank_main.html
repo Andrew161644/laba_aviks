@@ -53,7 +53,7 @@
                                                 <form>
                                                     <ul>
                                                         {{range .BankAccounts}}
-                                                        <li><a>{{.ID}} {{.Currency}}</a></li>
+                                                        <li><a href="/bank_account?ID={{.ID}}">{{.ID}} {{.Currency}}</a></li>
                                                         {{end}}
                                                     </ul>
                                                 </form>

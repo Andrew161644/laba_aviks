@@ -2,10 +2,12 @@ package views
 
 import "github.com/Andrew161644/avicks_laba/api/database/models"
 
-// Структура хранящая динамические поля для отображения в html
-type BankMainView struct {
+type ConcreteBankAccount struct {
 	Title        string
+	ID           string
 	UserName     string
+	AccountValue string
+	Currency     string
 	BankAccounts []BankAccount
 	Currencies   []models.Currency
 }

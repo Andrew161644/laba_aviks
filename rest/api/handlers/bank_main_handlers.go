@@ -47,6 +47,8 @@ func (app *Injection) BankMainHandler(w http.ResponseWriter, r *http.Request) {
 	case "POST":
 		userID, _, _ := app.UserSession.GetCurrentUserIdName(r)
 		id, _ := strconv.Atoi(r.FormValue("ID"))
+		log.Println("Id :", id)
+		log.Println("POST call")
 		var bankAcc = models.BankAccount{
 			Value:      0,
 			CurrencyId: id,

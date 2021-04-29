@@ -16,7 +16,7 @@
         <div class="wrap-header zerogrid">
             <div id="logo"><img src="../../static/images/logo.png"/></div>
             <div id="exit"><a href="/logout">Выйти</a> </div>
-            <div id="nick">{{ .UserName}}</div>
+            <div id="nick">{{.UserName}}</div>
             <div id="login">
                 <ul class="social-icons-1">
                     <li><a href="/login"><i class="fa fa-user"></i></a></li>
@@ -39,12 +39,12 @@
                         <div class="col-full">
                             <div class="wrap-col">
                                 <article>
-                                    <div class="heading"><h1 class="title"><div id="nickname">{{ .UserName}}</div></h1></div>
+                                    <div class="heading"><h1 class="title"><div id="nickname">{{.UserName}}</div></h1></div>
                                     <div class="heading"><h1 class="title">Имя счёта</h1></div>
-                                   
+                                    <div class="heading"><h1 class="title">{{.ID}}</h1></div>
 
                                     <div class="content" class="col-1-2">
-                                        <div><h2>На счету: {{.AccountValue}} {{Currency}}</h2></div>
+                                        <div><h2>На счету: {{.AccountValue}} {{.Currency}}</h2></div>
                                         <div class="extra"></div>
                                         
                                         <h3>Перевести деньги на:</h3>
@@ -52,7 +52,7 @@
                                                 <select class="selcls2">
                                                     <!--счета пользователей-->
                                                     {{range .BankAccounts}}
-                                                    <option selected class="Navigation1">{{.BankAccountId}}   {{.Currency}}</option>
+                                                    <option selected class="Navigation1">{{.ID}}   {{.Currency}}</option>
                                                     {{end}}
                                                 </select>
 
@@ -64,8 +64,9 @@
                                         <div class="extra"></div>
 
                                         <h3>Пополнить счёт</h3>
-                                        <form id="contact-form2" method="post">
+                                        <form id="contact-form2" method="post" action="/bank_account">
                                             <fieldset>
+                                                <input type="hidden" name="ID" value="{{.ID}}" />
                                                 <label><input  name = "add_value" onclick="" value="Введите сумму" maxlength="10" onBlur="if(this.value=='') this.value='Введите сумму'" onFocus="if(this.value =='Введите сумму' ) this.value=''"/></label>
                                               <div> <label ><a ><input type="submit" value="Пополнить" ></a></label></div>  
                                             </fieldset>

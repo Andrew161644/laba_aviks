@@ -52,3 +52,16 @@ func (db Database) UpdateBankAccountById(account models.BankAccount) (models.Ban
 	}
 	return account, nil
 }
+
+func (db Database) GetBankAccountById(id string) (models.BankAccount, error) {
+	bankAcc := models.BankAccount{}
+	query := `SELECT * FROM bank_account WHERE id = $1;`
+	row := db.Conn.QueryRow(query, id)
+
+	switch err := row.Scan(&bankAcc.ID, &bankAcc.CurrencyId, &bankAcc.UserId, &bankAcc.Value); err {
+	case sql.ErrNoRows:
+		return bankAcc, ErrNoMatch
+	default:
+		return bankAcc, err
+	}
+}
