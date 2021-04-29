@@ -19,4 +19,5 @@ func AddRoutes(app Injection) {
 	http.HandleFunc("/bank_account", app.BankAccountHandler)
 	http.HandleFunc("/bank_main", app.BankMainHandler)
 	http.HandleFunc("/example", app.HandlerExample)
+	http.HandleFunc("/company", app.CompanyHandler)
 }
