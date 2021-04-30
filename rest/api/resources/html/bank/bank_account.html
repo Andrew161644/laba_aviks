@@ -58,7 +58,7 @@
 
                                                 <fieldset>
                                                     <input type="hidden" name="oldBill" value="{{.ID}}" />
-                                                    <label><input  onclick="" name = "value" value="Введите сумму" maxlength="10" onBlur="if(this.value=='') this.value='Введите сумму'" onFocus="if(this.value =='Введите сумму' ) this.value=''"/></label>
+                                                    <label><input type="number" min="1"  onclick="" name = "value" value="Введите сумму" maxlength="10" onBlur="if(this.value=='') this.value='Введите сумму'" onFocus="if(this.value =='Введите сумму' ) this.value=''"required/></label>
                                                     <label> <a><input type="submit" value="Перевести" ></a></label>
                                                 </fieldset>
                                             </form>
@@ -68,7 +68,7 @@
                                         <form id="contact-form2" method="post" action="/bank_account">
                                             <fieldset>
                                                 <input type="hidden" name="ID" value="{{.ID}}" />
-                                                <label><input  name = "add_value" onclick="" value="Введите сумму" maxlength="10" onBlur="if(this.value=='') this.value='Введите сумму'" onFocus="if(this.value =='Введите сумму' ) this.value=''"/></label>
+                                                <label><input type="number" min="0"  name = "add_value" onclick="" value="Введите сумму" maxlength="10" onBlur="if(this.value=='') this.value='Введите сумму'" onFocus="if(this.value =='Введите сумму' ) this.value=''" required/></label>
                                               <div> <label ><a ><input type="submit" value="Пополнить" ></a></label></div>  
                                             </fieldset>
                                         </form>
