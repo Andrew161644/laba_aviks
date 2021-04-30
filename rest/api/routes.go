@@ -25,6 +25,7 @@ func AddRoutes(app handlers.Injection) {
 	http.HandleFunc("/bank_main", app.BankMainSecureHandler)
 	http.HandleFunc("/bank_account", app.BankAccountSecureHandler)
 	http.HandleFunc("/company", app.MyOrganizationSecureHandler)
+	http.HandleFunc("/transfer", app.ExchangePostHandler)
 
 	http.HandleFunc("/login", app.LoginDevHandler)
 	http.HandleFunc("/logout", app.LogOutHandler)

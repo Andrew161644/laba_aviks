@@ -48,16 +48,17 @@
                                         <div class="extra"></div>
                                         
                                         <h3>Перевести деньги на:</h3>
-                                            <form id="contact-form2" method="post">
-                                                <select class="selcls2">
+                                            <form id="contact-form2" method="post" action="/transfer">
+                                                <select class="selcls2" name = "newBill">
                                                     <!--счета пользователей-->
                                                     {{range .BankAccounts}}
-                                                    <option selected class="Navigation1">{{.ID}}   {{.Currency}}</option>
+                                                    <option selected class="Navigation1" value="{{.ID}}">{{.ID}}   {{.Currency}}</option>
                                                     {{end}}
                                                 </select>
 
                                                 <fieldset>
-                                                    <label><input  onclick="" value="Введите сумму" maxlength="10" onBlur="if(this.value=='') this.value='Введите сумму'" onFocus="if(this.value =='Введите сумму' ) this.value=''"/></label>
+                                                    <input type="hidden" name="oldBill" value="{{.ID}}" />
+                                                    <label><input  onclick="" name = "value" value="Введите сумму" maxlength="10" onBlur="if(this.value=='') this.value='Введите сумму'" onFocus="if(this.value =='Введите сумму' ) this.value=''"/></label>
                                                     <label> <a><input type="submit" value="Перевести" ></a></label>
                                                 </fieldset>
                                             </form>

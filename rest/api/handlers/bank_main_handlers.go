@@ -24,6 +24,7 @@ func (app *Injection) BankMainHandler(w http.ResponseWriter, r *http.Request) {
 			for _, currency := range currencies {
 				if currency.ID == account.CurrencyId {
 					cur = currency.Name
+					break
 				}
 			}
 			bankAccViewModel = append(bankAccViewModel, views.BankAccount{

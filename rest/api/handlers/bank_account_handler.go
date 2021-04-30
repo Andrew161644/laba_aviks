@@ -28,7 +28,7 @@ func (app *Injection) BankAccountHandler(w http.ResponseWriter, r *http.Request)
 			for _, currency := range currencies {
 				if currency.ID == account.CurrencyId {
 					curTemp = currency.Name
-					curr = currency.Name
+					break
 				}
 			}
 			if bankId == account.ID {
@@ -39,6 +39,13 @@ func (app *Injection) BankAccountHandler(w http.ResponseWriter, r *http.Request)
 				ID:       account.ID,
 				Currency: curTemp,
 			})
+		}
+		var bill, _ = app.DataBase.GetBankAccountById(bankId)
+		for _, currency := range currencies {
+			if currency.ID == bill.CurrencyId {
+				curr = currency.Name
+				break
+			}
 		}
 		err := tmpl.Execute(w, views.ConcreteBankAccount{
 			Title:        "BankAccount",
