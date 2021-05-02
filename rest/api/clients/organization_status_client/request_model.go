@@ -31,3 +31,28 @@ func (obj *OrgStatusRequestModel) AsUrlValues() map[string][]string {
 		"sumMoney":        {strconv.Itoa(obj.SumMoney)},
 	}
 }
+
+func GetOrgStatusRequestModelUrl(
+	name string,
+	borrCap string,
+	ownCap string,
+	balanceCurr string,
+	allCash string,
+	longTermDuties string,
+	shortTermDuties string,
+	shortFinInv string,
+	shortRec string,
+	sumMoney string) map[string][]string {
+	return map[string][]string{
+		"name":            {name},
+		"borrCap":         {borrCap},
+		"ownCap":          {ownCap},
+		"balanceCurr":     {balanceCurr},
+		"allCash":         {allCash},
+		"longTermDuties":  {longTermDuties},
+		"shortTermDuties": {shortTermDuties},
+		"shortFinInv":     {shortFinInv},
+		"shortRec":        {shortRec},
+		"sumMoney":        {sumMoney},
+	}
+}
