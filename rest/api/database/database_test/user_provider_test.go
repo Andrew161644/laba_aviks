@@ -15,13 +15,13 @@ func TestAddUser(t *testing.T) {
 }
 
 func TestGetUserByNameAndPassword(t *testing.T) {
-	user, err := db.GetUserByNameAndPassword("TestUser", "test1")
+	user, err := db.GetUserByNameAndPassword("Andrew", "admin")
 	if err != nil {
 		log.Fatal(err)
 	}
 	var expected = models.UserModel{
-		Name:     "TestUser",
-		Password: "test1",
+		Name:     "Andrew",
+		Password: "admin",
 	}
 	if user.Name != expected.Name || user.Password != user.Password {
 		log.Fatal("Error")
@@ -37,11 +37,11 @@ func TestCanGetUser(t *testing.T) {
 }
 
 func TestGetUserByName(t *testing.T) {
-	user, err := db.GetUserByName("TestUser")
+	user, err := db.GetUserByName("ivan")
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	if user.Name != "TestUser" {
+	if user.Name != "ivan" {
 		log.Fatal("Expected error")
 	}
 	log.Println(user)

@@ -31,19 +31,6 @@ func TestCanAddBankAccount(t *testing.T) {
 	log.Println(id)
 }
 
-func TestCanUpdateBankAccountById(t *testing.T) {
-	var acc, error = db.UpdateBankAccountById(models.BankAccount{
-		ID:         "5fa81258-a019-11eb-bcbc-0242ac130002",
-		Value:      12,
-		CurrencyId: 2,
-		UserId:     2,
-	})
-	if error != nil {
-		log.Fatalln(error)
-	}
-	log.Println(acc)
-}
-
 func TestCanDeleteBankAccount(t *testing.T) {
 	var error = db.DeleteBankAccountById(models.BankAccount{
 		ID: "5fa81258-a019-11eb-bcbc-0242ac130002",

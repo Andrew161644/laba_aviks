@@ -3,15 +3,11 @@ package providers
 import (
 	"database/sql"
 	"fmt"
-	_ "github.com/lib/pq"
 	"log"
 	"time"
-)
 
-//const (
-//	HOST = "db"
-//	PORT = 5432
-//)
+	_ "github.com/lib/pq"
+)
 
 // Структура база данных(хранит подключение)
 type Database struct {
