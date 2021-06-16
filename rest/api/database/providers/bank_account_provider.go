@@ -8,7 +8,7 @@ import (
 func (db Database) AddBankAccount(account models.BankAccount) (string, error) {
 	var id string
 	query := `INSERT INTO bank_account (value, currencyid, userid) values ($1, $2, $3) RETURNING id`
-	err := db.Conn.QueryRow(query, account.Value, account.UserId, account.CurrencyId).Scan(&id)
+	err := db.Conn.QueryRow(query, account.Value, account.CurrencyId, account.UserId).Scan(&id)
 	if err != nil {
 		return "", err
 	}
@@ -24,7 +24,7 @@ func (db Database) GetAllBankAccountsByUserId(account models.BankAccount) (model
 	}
 	for rows.Next() {
 		var bankAcc = models.BankAccount{}
-		err := rows.Scan(&bankAcc.ID, &bankAcc.Value, &bankAcc.UserId, &bankAcc.CurrencyId)
+		err := rows.Scan(&bankAcc.ID, &bankAcc.CurrencyId, &bankAcc.UserId, &bankAcc.Value)
 		if err != nil {
 			return bankAccs, err
 		}
@@ -51,4 +51,17 @@ func (db Database) UpdateBankAccountById(account models.BankAccount) (models.Ban
 		return models.BankAccount{}, err
 	}
 	return account, nil
+}
+
+func (db Database) GetBankAccountById(id string) (models.BankAccount, error) {
+	bankAcc := models.BankAccount{}
+	query := `SELECT * FROM bank_account WHERE id = $1;`
+	row := db.Conn.QueryRow(query, id)
+
+	switch err := row.Scan(&bankAcc.ID, &bankAcc.CurrencyId, &bankAcc.UserId, &bankAcc.Value); err {
+	case sql.ErrNoRows:
+		return bankAcc, ErrNoMatch
+	default:
+		return bankAcc, err
+	}
 }

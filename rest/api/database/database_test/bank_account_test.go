@@ -9,7 +9,7 @@ import (
 
 func TestCanGetAccountsBuUserId(t *testing.T) {
 	var bankAccs, error = db.GetAllBankAccountsByUserId(models.BankAccount{
-		UserId: 6,
+		UserId: 7,
 	})
 	if error != nil {
 		log.Fatal("Err: ", error)
@@ -29,19 +29,6 @@ func TestCanAddBankAccount(t *testing.T) {
 		log.Fatalln(error)
 	}
 	log.Println(id)
-}
-
-func TestCanUpdateBankAccountById(t *testing.T) {
-	var acc, error = db.UpdateBankAccountById(models.BankAccount{
-		ID:         "5fa81258-a019-11eb-bcbc-0242ac130002",
-		Value:      12,
-		CurrencyId: 2,
-		UserId:     2,
-	})
-	if error != nil {
-		log.Fatalln(error)
-	}
-	log.Println(acc)
 }
 
 func TestCanDeleteBankAccount(t *testing.T) {

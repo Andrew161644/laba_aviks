@@ -57,6 +57,16 @@ header #exit:hover{float: right; margin-top:15px;margin-left: 5px; color:#c92525
 header #exit a{float: right; margin-top:15px;margin-left: 5px; color:#2ECC71;}
 header #exit:hover a{float: right; margin-top:15px;margin-left: 5px; color:#c92525;}
 
+header #company{float: right; margin-top:15px; color:#2ECC71;}
+header #company a{float: right; margin-top:15px; color:#2ECC71;}
+header #company a hover{float: right; margin-top:15px; color:#000000;}
+header #company:hover a{float: right; margin-top:15px; color:#EEEEEE;}
+
+header #accounts{float: right; margin-top:15px; color:#2ECC71;margin-right: 15px;}
+header #accounts a{float: right; margin-top:15px; color:#2ECC71;}
+header #accounts:hover a{float: right; margin-top:15px; color:#EEEEEE;}
+
+
 
 header #menudop ul {list-style: none;margin: 0;padding: 0;}
 header #menudop ul li  {position: relative;float: right;padding: 28px 5px 21px 5px; background:#0b7236;}
@@ -191,12 +201,43 @@ nav .wrap-nav{float: right;}
 	background: #ffffff;
 	outline: none;
 }
+
+#contact-form2  a input {
+	color: #000000;
+	background-color: #e0d4d4de;
+}
+#contact-form2  a input :hover{
+	color: #2ECC71;
+	background-color: #c20404de;
+	border-radius: 1px;
+}
+#contact-form2  a :hover{
+	color: #2ECC71;
+	background-color: #f5f5f5de;
+	border-radius: 5px;
+}
 .buttons {padding-top:17px; text-align:right}
 .buttons a {margin-left:30px}
 .buttons a hover{color:#2ECC71;}
 
 .buttons2 {width:232px;}
-.buttons2 li {width:232px;margin-bottom: 5px;margin-top: 5px;}
+.buttons2 a :hover{color:#2ECC71;}
+.buttons2 input  {
+	font-size:15px;
+	color:#000000;
+	padding:8px 15px;
+	margin:0;
+	font-family:Arial, Helvetica, sans-serif;
+	border:1px solid #eeeeee;
+	background: #ffffff;
+	outline:none;
+}
+
+.buttons2 a input :hover{
+	color: #2ECC71;
+	background-color: #c20404de;
+	border-radius: 1px;
+}
 
 .buttons3 {text-align: center;margin-top: 20px;margin-left: 45px;}
 

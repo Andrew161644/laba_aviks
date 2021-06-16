@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-import currencyExchangeLib
+
 import coeffFunctionsLib
 server = Flask(__name__)
 
@@ -26,17 +26,6 @@ def coefficient():
         report = coeffFunctionsLib.KReport(kk, kn, kfin, kfu, kabsl, kfastl, kcurrl)
         data = {'kk': kk, 'kn': kn, 'kfin': kfin, 'kfu': kfu, 'kabsl': kabsl, 'kfastl': kfastl, 'kcurrl': kcurrl, 'report': report} #json выходные данные
         #  #return render_template('coefficient.html', kk="Коэффициент капитализации: "+str(kk), kn="Коэффициент финансовой независимости: "+str(kn), kfin="Коэффициент финансирования: "+str(kfin), kfu="Коэффициент финанcовой устойчивости: "+str(kfu), kabsl="Коэффициент абсолютной ликвидности: "+str(kabsl), kfastl="Коэффициент быстрой ликвидности: "+str(kfastl), kcurrl="Коэффициент текущей (общей) ликвидности: "+str(kcurrl), titleReport="Отчет", report=report)
-        return jsonify(data)
-
-@server.route('/currency', methods=['POST'])
-def currency():
-    if request.method=='POST':
-        formData = request.form
-        value = float(formData['value'])
-        currentCurrencyName = formData['currentCurrencyName']
-        newCurrencyName = formData['newCurrencyName']
-        value, currentCurrencyName = currencyExchangeLib.curExchange(value, currentCurrencyName, newCurrencyName)
-        data = {'value': value, 'currentCurrencyName': currentCurrencyName}  # json выходные данные
         return jsonify(data)
 
 if __name__ == "__main__":

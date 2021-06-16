@@ -2,10 +2,11 @@ package handlers
 
 import (
 	"fmt"
-	"github.com/Andrew161644/avicks_laba/api/database/models"
-	. "github.com/Andrew161644/avicks_laba/api/session"
 	"html/template"
 	"net/http"
+
+	"github.com/Andrew161644/avicks_laba/api/database/models"
+	. "github.com/Andrew161644/avicks_laba/api/session"
 )
 
 // Обработчик регистрации
@@ -38,7 +39,8 @@ func (app *Injection) RegistartionHandlerHandler(w http.ResponseWriter, r *http.
 				RoleId:   2,
 			})
 			app.UserSession.LoginUser(w, r, app.DataBase, &userData)
-			app.HelloPageHandler(w, r)
+			r.Method = "GET"
+			app.BankMainHandler(w, r)
 
 		} else {
 			tmpl, _ := template.ParseFiles("../resources/html/registration.html")
